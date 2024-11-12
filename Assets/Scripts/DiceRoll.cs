@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class DiceRoll : MonoBehaviour
 {
-    public int diceValue; // Valor do dado (1-6)
-    public float rotationSpeed = 5000f; // Velocidade de rotação do dado
-    private bool isRolling = false; // Verifica se o dado está rolando
-    public Action OnRollComplete; // Evento chamado quando a rolagem é concluída
+    public int diceValue;
+    public float rotationSpeed = 5000f;
+    private bool isRolling = false;
+    public Action OnRollComplete;
 
     private void Update()
     {
@@ -23,7 +23,6 @@ public class DiceRoll : MonoBehaviour
     {
         if (!isRolling)
         {
-            // Inicia o giro do dado
             StartCoroutine(RollDice());
         }
     }
