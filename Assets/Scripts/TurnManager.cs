@@ -23,12 +23,12 @@ public class TurnManager : MonoBehaviour
         // Rola o dado para cada jogador na sequência de definição inicial
         foreach (var player in players)
         {
-            Debug.Log("É a vez do jogador " + player.name + " para definir a ordem de turnos. Clique no dado para rolar.");
+            Debug.Log($"É a vez do jogador {player.name} para definir a ordem de turnos. Clique no dado para rolar.");
             yield return StartCoroutine(WaitForPlayerRoll(player)); // Aguarda o jogador rolar o dado
 
             // Armazena o valor da rolagem inicial
             playerRolls.Add(player, dice.diceValue);
-            Debug.Log("Jogador " + player.name + " tirou o valor: " + dice.diceValue);
+            Debug.Log($"Jogador {player.name} tirou o valor: {dice.diceValue}");
         }
 
         // Ordena os jogadores pelo valor do dado (maior para menor)
@@ -52,10 +52,10 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Ordem de turnos definida:");
         foreach (var player in turnOrder)
         {
-            Debug.Log(player.name + " com valor de dado: " + playerRolls[player]);
+            Debug.Log($"{player.name} com valor de dado: {playerRolls[player]}");
         }
 
-        // Inicia o ciclo de turnos principal
+        // Inicia o ciclo principal de turnos
         StartCoroutine(HandleTurn());
     }
 
@@ -65,13 +65,17 @@ public class TurnManager : MonoBehaviour
         while (true)
         {
             GameObject currentPlayer = turnOrder[currentPlayerIndex];
-            Debug.Log("Turno de: " + currentPlayer.name + ". Clique no dado para rolar.");
+            Debug.Log($"Turno de: {currentPlayer.name}. Clique no dado para rolar.");
 
             // Aguarda o jogador rolar o dado
             yield return StartCoroutine(WaitForPlayerRoll(currentPlayer));
 
-            // Ação do jogador pode ser adicionada aqui
-            Debug.Log("Jogador " + currentPlayer.name + " rolou: " + dice.diceValue);
+            int steps = dice.diceValue;
+            Debug.Log($"Jogador {currentPlayer.name} rolou {steps}.");
+
+            // Move o jogador baseado no valor do dado
+            PlayerMovement movement = currentPlayer.GetComponent<PlayerMovement>();
+            yield return StartCoroutine(movement.MovePlayer(steps));
 
             // Passa para o próximo jogador
             currentPlayerIndex = (currentPlayerIndex + 1) % turnOrder.Count;
