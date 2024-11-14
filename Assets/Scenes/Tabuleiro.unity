@@ -16194,6 +16194,9 @@ MonoBehaviour:
   - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
+  rotationSpeed: 10
+  jumpHeight: 2
+  jumpDuration: 0.5
 --- !u!1 &437073180
 GameObject:
   m_ObjectHideFlags: 0
@@ -26633,6 +26636,9 @@ MonoBehaviour:
   - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
+  rotationSpeed: 10
+  jumpHeight: 2
+  jumpDuration: 0.5
 --- !u!1001 &733116024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33507,6 +33513,9 @@ MonoBehaviour:
   - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
+  rotationSpeed: 10
+  jumpHeight: 2
+  jumpDuration: 0.5
 --- !u!1001 &884866704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40002,6 +40011,9 @@ MonoBehaviour:
   - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
+  rotationSpeed: 10
+  jumpHeight: 2
+  jumpDuration: 0.5
 --- !u!1001 &1060514258
 PrefabInstance:
   m_ObjectHideFlags: 0

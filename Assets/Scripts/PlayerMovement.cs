@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public int currentWaypointIndex = 0; // Índice do waypoint atual
     public float moveSpeed = 2f; // Velocidade do movimento
     public float rotationSpeed = 10f; // Velocidade da rotação
+    public float jumpHeight = 1f; // Altura do pulo
+    public float jumpDuration = 0.5f; // Duração do pulo
 
     public IEnumerator MovePlayer(int steps)
     {
@@ -28,12 +30,8 @@ public class PlayerMovement : MonoBehaviour
             // Rotaciona o personagem para olhar na direção do próximo waypoint
             yield return StartCoroutine(RotateTowards(nextWaypoint.position));
 
-            // Move o jogador até o próximo waypoint
-            while (Vector3.Distance(transform.position, nextWaypoint.position) > 0.1f)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.position, moveSpeed * Time.deltaTime);
-                yield return null; // Espera até a próxima frame
-            }
+            // Move o jogador até o próximo waypoint com um pulo
+            yield return StartCoroutine(JumpTo(nextWaypoint.position));
 
             // Atualiza o índice do waypoint atual
             currentWaypointIndex++;
@@ -59,5 +57,33 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.rotation = targetRotation; // Ajusta a rotação final
+    }
+
+    // Faz o personagem "pular" até o destino
+    private IEnumerator JumpTo(Vector3 targetPosition)
+    {
+        Vector3 startPosition = transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < jumpDuration)
+        {
+            // Calcula o progresso do movimento
+            float t = elapsedTime / jumpDuration;
+
+            // Interpola entre a posição inicial e o destino
+            Vector3 position = Vector3.Lerp(startPosition, targetPosition, t);
+
+            // Adiciona o efeito de pulo (parábola)
+            position.y += jumpHeight * Mathf.Sin(t * Mathf.PI);
+
+            // Atualiza a posição do jogador
+            transform.position = position;
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Espera até a próxima frame
+        }
+
+        // Garante que o jogador chegue exatamente no destino
+        transform.position = targetPosition;
     }
 }
