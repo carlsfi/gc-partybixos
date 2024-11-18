@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "partybixos.sln"
+    "dotnet.defaultSolution": "partybixos.sln",
+    "dotnet.preferCSharpExtension": true
 }
