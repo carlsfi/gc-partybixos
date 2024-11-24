@@ -59135,7 +59135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceValue: 0
-  rotationSpeed: 5000
 --- !u!1001 &1599675743
 PrefabInstance:
   m_ObjectHideFlags: 0
