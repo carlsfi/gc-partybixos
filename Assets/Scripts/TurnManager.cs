@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
+
 public class TurnManager : MonoBehaviour
 {
+    public event Action<List<GameObject>> OnTurnOrderDefined; // Evento para notificar o HUD
     public List<GameObject> players; // Lista dos jogadores
     public DiceRoll dice; // Referência ao script do dado
     public MessageManager messageManager; // Referência ao MessageManager
@@ -51,6 +54,7 @@ public class TurnManager : MonoBehaviour
 
         yield return StartCoroutine(ShowTurnOrder());
         StartCoroutine(HandleTurn());
+        OnTurnOrderDefined?.Invoke(turnOrder);
     }
 
     private IEnumerator ShowTurnOrder()
@@ -127,7 +131,7 @@ public class TurnManager : MonoBehaviour
         while (elapsedTime < totalDuration)
         {
             // Gira aleatoriamente entre os nomes dos minigames
-            string currentMinigame = allMinigames[Random.Range(0, allMinigames.Length)];
+            string currentMinigame = allMinigames[UnityEngine.Random.Range(0, allMinigames.Length)];
             messageManager.ShowMessage($"Minigame: {currentMinigame}");
 
             yield return new WaitForSeconds(currentInterval);
@@ -138,7 +142,7 @@ public class TurnManager : MonoBehaviour
         }
 
         // Seleciona um minigame disponível
-        selectedMinigame = availableMinigames[Random.Range(0, availableMinigames.Length)];
+        selectedMinigame = availableMinigames[UnityEngine.Random.Range(0, availableMinigames.Length)];
         messageManager.ShowMessage($"Minigame Selecionado: {selectedMinigame}");
 
         yield return new WaitForSeconds(2);
