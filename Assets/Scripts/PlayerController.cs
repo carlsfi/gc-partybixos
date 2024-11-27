@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
+        // Verifica entrada para pular (apenas o controle associado ao jogador)
+        if (Input.GetButtonDown($"P{playerNumber}_Jump") && isGrounded)
+        {
+            Jump();
+        }
+
         // Atualiza as animações
         UpdateAnimations();
     }
@@ -59,6 +65,9 @@ public class PlayerController : MonoBehaviour
             // Define o estado de correr ou parar
             bool isRunning = movement.magnitude > 0.1f; // Se há movimento significativo
             animator.SetBool("isRunning", isRunning);
+
+            // Define o estado de pulo
+            animator.SetBool("isJumping", !isGrounded);
         }
     }
 
@@ -67,6 +76,12 @@ public class PlayerController : MonoBehaviour
         // Aplica a força de pulo no Rigidbody
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         isGrounded = false; // Indica que o jogador não está no chão
+
+        // Ativa a animação de pulo
+        if (animator != null)
+        {
+            animator.SetTrigger("Jump");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,6 +90,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+
+            // Reseta a animação de pulo
+            if (animator != null)
+            {
+                animator.ResetTrigger("Jump");
+                animator.SetBool("isJumping", false);
+            }
         }
     }
 }
