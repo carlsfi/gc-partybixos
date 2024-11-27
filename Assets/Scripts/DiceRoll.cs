@@ -3,23 +3,49 @@ using UnityEngine;
 
 public class DiceRoll : MonoBehaviour
 {
-    public int diceValue;
-    public float rotationSpeed = 5000f;
-    private bool isRolling = false;
-    public Action OnRollComplete;
+    public int diceValue; // Valor do dado
+    private bool isRolling = false; // Impede múltiplas rolagens simultâneas
+    public Action OnRollComplete; // Evento acionado após a rolagem
 
     private void Update()
     {
+        // Verifica se o dado está girando
         if (isRolling)
         {
             // Gira o dado em todas as direções
-            transform.Rotate(UnityEngine.Random.Range(300, 600) * Time.deltaTime, 
-                             UnityEngine.Random.Range(300, 600) * Time.deltaTime, 
+            transform.Rotate(UnityEngine.Random.Range(300, 600) * Time.deltaTime,
+                             UnityEngine.Random.Range(300, 600) * Time.deltaTime,
                              UnityEngine.Random.Range(300, 600) * Time.deltaTime);
+        }
+        else
+        {
+            // Verifica entrada do teclado ou controle apenas se o dado não está girando
+            CheckRollInput();
         }
     }
 
-    private void OnMouseDown()
+    private void CheckRollInput()
+    {
+        // Teclado: Espaço
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartDiceRoll();
+        }
+
+        // Controle Xbox: Botão A
+        if (Input.GetButtonDown("Submit")) // "Submit" é geralmente associado ao botão A no Xbox
+        {
+            StartDiceRoll();
+        }
+
+        // Controle PlayStation: Botão X
+        if (Input.GetKeyDown(KeyCode.JoystickButton1)) // Botão 1 é geralmente o X no PlayStation
+        {
+            StartDiceRoll();
+        }
+    }
+
+    private void StartDiceRoll()
     {
         if (!isRolling)
         {
@@ -29,12 +55,12 @@ public class DiceRoll : MonoBehaviour
 
     private System.Collections.IEnumerator RollDice()
     {
-        isRolling = true;
+        isRolling = true; // Bloqueia novas rolagens
 
         // Define uma duração para o giro (1 segundo, por exemplo)
         yield return new WaitForSeconds(1f);
 
-        isRolling = false;
+        isRolling = false; // Permite novas rolagens
 
         // Gera um valor aleatório para o dado entre 1 e 6
         diceValue = UnityEngine.Random.Range(1, 7);
@@ -75,9 +101,6 @@ public class DiceRoll : MonoBehaviour
 
     public void Roll()
     {
-        if (!isRolling)
-        {
-            StartCoroutine(RollDice());
-        }
+        StartDiceRoll(); // Chama a rolagem
     }
 }
