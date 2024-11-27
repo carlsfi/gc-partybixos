@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f; // Velocidade de movimento
-    public float jumpForce = 7f; // Força do pulo (aumente para um salto maior)
+    public float jumpForce = 7f; // Força do pulo
     private Vector3 movement; // Direção do movimento
     private Rigidbody rb; // Referência ao Rigidbody
+    private Animator animator; // Referência ao Animator
 
     public int playerNumber; // Número do jogador
     public float deadzone = 0.2f; // Zona morta para evitar movimento indesejado
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>(); // Obtém o componente Animator
     }
 
     private void Update()
@@ -37,11 +39,8 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        // Detecta o botão de pulo específico do jogador
-        if (isGrounded && Input.GetButtonDown($"P{playerNumber}_Jump")) // Exemplo: "P1_Jump", "P2_Jump"
-        {
-            Jump();
-        }
+        // Atualiza as animações
+        UpdateAnimations();
     }
 
     private void FixedUpdate()
@@ -50,6 +49,16 @@ public class PlayerController : MonoBehaviour
         {
             // Move o jogador usando o Rigidbody
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void UpdateAnimations()
+    {
+        if (animator != null)
+        {
+            // Define o estado de correr ou parar
+            bool isRunning = movement.magnitude > 0.1f; // Se há movimento significativo
+            animator.SetBool("isRunning", isRunning);
         }
     }
 
