@@ -5,4 +5,5 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public string points;
+    public Sprite playerSprite;
 }

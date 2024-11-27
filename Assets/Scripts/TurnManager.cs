@@ -1,102 +1,172 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
+
 
 public class TurnManager : MonoBehaviour
 {
-    public List<GameObject> players; // Lista dos objetos dos jogadores
-    public DiceRoll dice; // Referência ao objeto dado (com o script DiceRoll)
-    private List<GameObject> turnOrder = new List<GameObject>(); // Ordem dos turnos
-    private int currentPlayerIndex = 0; // Índice do jogador atual
+    public event Action<List<GameObject>> OnTurnOrderDefined; // Evento para notificar o HUD
+    public List<GameObject> players; // Lista dos jogadores
+    public DiceRoll dice; // Referência ao script do dado
+    public MessageManager messageManager; // Referência ao MessageManager
+    private List<GameObject> turnOrder = new List<GameObject>(); // Ordem de turnos
+
+    // Lista de todos os minigames
+    private string[] allMinigames = { "Quiz Sky", "Cata Lixo", "Leva Caixa", "Corrida Animal" };
+    // Lista de minigames disponíveis com cenas
+    private string[] availableMinigames = { "QuizSky(MG)", "CataLixo(MG)" };
 
     private void Start()
     {
-        StartCoroutine(InitializeTurnOrder());
+        GameData.InitializeGameData(players.Count); // Inicializa dados persistentes
+        RestoreGameState(); // Restaura o estado do jogo
+
+        if (GameData.turnOrder.Count == 0)
+        {
+            StartCoroutine(InitializeTurnOrder());
+        }
+        else
+        {
+            // Restaura a ordem dos turnos já definida
+            turnOrder = GameData.turnOrder.Select(index => players[index]).ToList();
+            StartCoroutine(HandleTurn());
+        }
     }
 
-    // Define a ordem de turnos baseada nas rolagens iniciais
     private IEnumerator InitializeTurnOrder()
     {
         Dictionary<GameObject, int> playerRolls = new Dictionary<GameObject, int>();
 
-        // Rola o dado para cada jogador na sequência de definição inicial
         foreach (var player in players)
         {
-            Debug.Log($"É a vez do jogador {player.name} para definir a ordem de turnos. Clique no dado para rolar.");
-            yield return StartCoroutine(WaitForPlayerRoll(player)); // Aguarda o jogador rolar o dado
-
-            // Armazena o valor da rolagem inicial
+            messageManager.ShowMessage($"É a vez do jogador {player.name}!\nRole o dado!");
+            yield return StartCoroutine(WaitForPlayerRoll(player));
             playerRolls.Add(player, dice.diceValue);
-            Debug.Log($"Jogador {player.name} tirou o valor: {dice.diceValue}");
+            messageManager.ShowMessage($"Jogador {player.name} tirou: {dice.diceValue}");
         }
 
-        // Ordena os jogadores pelo valor do dado (maior para menor)
+        // Define a ordem dos turnos
         turnOrder = playerRolls.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+        GameData.turnOrder = turnOrder.Select(player => players.IndexOf(player)).ToList(); // Salva no GameData
 
-        // Lida com empates (50/50)
-        for (int i = 0; i < turnOrder.Count - 1; i++)
-        {
-            if (playerRolls[turnOrder[i]] == playerRolls[turnOrder[i + 1]])
-            {
-                if (Random.Range(0, 2) == 0)
-                {
-                    // Troca a posição dos jogadores empatados aleatoriamente
-                    var temp = turnOrder[i];
-                    turnOrder[i] = turnOrder[i + 1];
-                    turnOrder[i + 1] = temp;
-                }
-            }
-        }
-
-        Debug.Log("Ordem de turnos definida:");
-        foreach (var player in turnOrder)
-        {
-            Debug.Log($"{player.name} com valor de dado: {playerRolls[player]}");
-        }
-
-        // Inicia o ciclo principal de turnos
+        yield return StartCoroutine(ShowTurnOrder());
         StartCoroutine(HandleTurn());
+        OnTurnOrderDefined?.Invoke(turnOrder);
     }
 
-    // Ciclo principal de turnos
+    private IEnumerator ShowTurnOrder()
+    {
+        string orderMessage = "Ordem dos turnos:\n";
+        for (int i = 0; i < turnOrder.Count; i++)
+        {
+            orderMessage += $"{i + 1}º: {turnOrder[i].name}\n";
+            messageManager.ShowMessage(orderMessage);
+            yield return new WaitForSeconds(1);
+        }
+    }
+
     private IEnumerator HandleTurn()
     {
         while (true)
         {
-            GameObject currentPlayer = turnOrder[currentPlayerIndex];
-            Debug.Log($"Turno de: {currentPlayer.name}. Clique no dado para rolar.");
+            GameObject currentPlayer = turnOrder[GameData.currentPlayerIndex];
+            messageManager.ShowMessage($"Turno do jogador {currentPlayer.name}!\nRole o dado!");
 
-            // Aguarda o jogador rolar o dado
             yield return StartCoroutine(WaitForPlayerRoll(currentPlayer));
 
             int steps = dice.diceValue;
-            Debug.Log($"Jogador {currentPlayer.name} rolou {steps}.");
+            messageManager.ShowMessage($"{currentPlayer.name} tirou {steps}!");
 
-            // Move o jogador baseado no valor do dado
             PlayerMovement movement = currentPlayer.GetComponent<PlayerMovement>();
             yield return StartCoroutine(movement.MovePlayer(steps));
 
-            // Passa para o próximo jogador
-            currentPlayerIndex = (currentPlayerIndex + 1) % turnOrder.Count;
+            // Atualiza a posição do jogador
+            GameData.playerPositions[GameData.currentPlayerIndex] = movement.currentWaypointIndex;
+
+            // Próximo jogador
+            GameData.currentPlayerIndex = (GameData.currentPlayerIndex + 1) % players.Count;
+
+            if (GameData.currentPlayerIndex == 0)
+            {
+                yield return StartCoroutine(EndRound());
+            }
         }
     }
 
-    // Aguarda o jogador clicar no dado para rolar
     private IEnumerator WaitForPlayerRoll(GameObject player)
     {
         bool hasRolled = false;
 
-        // Inscreve-se no evento de rolagem do dado
         dice.OnRollComplete = () =>
         {
             hasRolled = true;
         };
 
-        // Espera até que o jogador role o dado
         while (!hasRolled)
         {
             yield return null;
+        }
+    }
+
+    private IEnumerator EndRound()
+    {
+        messageManager.ShowMessage("Fim da rodada!");
+        yield return new WaitForSeconds(2);
+
+        yield return StartCoroutine(ShowMinigameRoulette());
+    }
+
+    private IEnumerator ShowMinigameRoulette()
+    {
+        float totalDuration = 4f; // Duração total da animação
+        float currentInterval = 0.05f; // Começa com intervalos rápidos
+        float slowDownRate = 1.5f; // Fator de desaceleração
+        string selectedMinigame = null;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < totalDuration)
+        {
+            // Gira aleatoriamente entre os nomes dos minigames
+            string currentMinigame = allMinigames[UnityEngine.Random.Range(0, allMinigames.Length)];
+            messageManager.ShowMessage($"Minigame: {currentMinigame}");
+
+            yield return new WaitForSeconds(currentInterval);
+            elapsedTime += currentInterval;
+
+            // Aumenta o intervalo para desacelerar a roleta
+            currentInterval *= slowDownRate;
+        }
+
+        // Seleciona um minigame disponível
+        selectedMinigame = availableMinigames[UnityEngine.Random.Range(0, availableMinigames.Length)];
+        messageManager.ShowMessage($"Minigame Selecionado: {selectedMinigame}");
+
+        yield return new WaitForSeconds(2);
+
+        SaveGameState();
+        SceneManager.LoadScene(selectedMinigame);
+    }
+
+    private void SaveGameState()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+            GameData.playerPositions[i] = movement.currentWaypointIndex;
+        }
+    }
+
+    private void RestoreGameState()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+            movement.currentWaypointIndex = GameData.playerPositions[i];
+            movement.transform.position = movement.waypoints[movement.currentWaypointIndex].position;
         }
     }
 }
