@@ -10,6 +10,17 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 1f; // Altura do pulo
     public float jumpDuration = 0.5f; // Duração do pulo
 
+    public Animator animator; // Referência ao Animator
+
+    private void Start()
+    {
+        // Garante que o personagem começa no estado Idle
+        if (animator != null)
+        {
+            animator.SetTrigger("Idle");
+        }
+    }
+
     public IEnumerator MovePlayer(int steps)
     {
         Debug.Log($"Iniciando movimentação com {steps} passos. Índice atual: {currentWaypointIndex}");
@@ -65,6 +76,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 startPosition = transform.position;
         float elapsedTime = 0f;
 
+        // Aciona a animação de pulo
+        if (animator != null)
+        {
+            animator.SetTrigger("Jump");
+        }
+
         while (elapsedTime < jumpDuration)
         {
             // Calcula o progresso do movimento
@@ -85,5 +102,11 @@ public class PlayerMovement : MonoBehaviour
 
         // Garante que o jogador chegue exatamente no destino
         transform.position = targetPosition;
+
+        // Retorna ao estado Idle automaticamente
+        if (animator != null)
+        {
+            animator.SetTrigger("Idle");
+        }
     }
 }
