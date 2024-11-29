@@ -119,10 +119,17 @@ public class PlayerController : MonoBehaviour
         velocity.y = jumpForce; // Aplica força de pulo
         isGrounded = false; // Define como não no chão
 
-        // Ativa o trigger da animação de pulo
+        // Ativa a animação de pulo ou hop
         if (animator != null)
         {
-            animator.SetTrigger("Jump");
+            if (movement.magnitude > 0.1f) // Se estiver se movendo
+            {
+                animator.SetTrigger("Hop");
+            }
+            else
+            {
+                animator.SetTrigger("Jump");
+            }
         }
     }
 

@@ -33841,7 +33841,7 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 15
+  airRotationSpeed: 20
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -42568,7 +42568,6 @@ GameObject:
   - component: {fileID: 605500653849042024}
   - component: {fileID: 6811421166730577428}
   - component: {fileID: 6811421166730577427}
-  - component: {fileID: 6811421166730577429}
   m_Layer: 0
   m_Name: CACHORRO
   m_TagString: Untagged
@@ -42725,25 +42724,11 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 15
+  airRotationSpeed: 20
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
   kickForce: 25
---- !u!114 &6811421166730577429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6182553723672059048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8549ca8f92fa040b8088dd7b70b4c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadow: {fileID: 0}
-  offset: 2
 --- !u!1 &6814700296322345362
 GameObject:
   m_ObjectHideFlags: 0
@@ -43074,7 +43059,7 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 15
+  airRotationSpeed: 20
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -43262,7 +43247,7 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 15
+  airRotationSpeed: 20
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
