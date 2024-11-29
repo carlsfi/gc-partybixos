@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 10f; // Velocidade da rotação no chão
     public float airRotationSpeed = 5f; // Velocidade da rotação no ar
     public LayerMask groundLayer; // Camada para detectar o chão
+    public float kickForce = 10f; // Força do chute na bola
 
     private CharacterController characterController;
     private Vector3 movement; // Movimento horizontal
@@ -47,9 +48,9 @@ public class PlayerController : MonoBehaviour
         // Detecta se o jogador está no chão
         CheckGrounded();
 
-        // Captura os inputs específicos do jogador
+        // Captura os inputs específicos do jogador e inverte o eixo Y
         float moveHorizontal = Input.GetAxis(horizontalAxis);
-        float moveVertical = -Input.GetAxis(verticalAxis);
+        float moveVertical = -Input.GetAxis(verticalAxis); // Inversão do eixo Y
 
         // Aplica a deadzone
         if (Mathf.Abs(moveHorizontal) < deadzone) moveHorizontal = 0;
@@ -134,6 +135,27 @@ public class PlayerController : MonoBehaviour
 
             // Atualiza o estado de pulo
             animator.SetBool("isJumping", !isGrounded);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        // Verifica se o objeto colidido é a bola
+        if (hit.collider.gameObject.name == "Bola")
+        {
+            Rigidbody ballRigidbody = hit.collider.attachedRigidbody;
+
+            // Aplica força apenas se for um Rigidbody válido e não kinematic
+            if (ballRigidbody != null && !ballRigidbody.isKinematic)
+            {
+                // Direção do chute: do personagem para a bola
+                Vector3 forceDirection = hit.point - transform.position;
+                forceDirection.y = 0; // Mantém a força apenas no plano horizontal
+                forceDirection.Normalize();
+
+                // Aplica a força do chute
+                ballRigidbody.AddForce(forceDirection * kickForce, ForceMode.Impulse);
+            }
         }
     }
 }
