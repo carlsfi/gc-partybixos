@@ -18,189 +18,171 @@ public class Questions : MonoBehaviour
     {
         questions.AddRange(
             new List<Question>()
-            {
-                new(
-                    id: 1,
-                    text: "Qual é a capital do Brasil?",
-                    items: new List<string>
-                    {
-                        "São Paulo",
-                        "Rio de Janeiro",
-                        "Brasília",
-                        "Salvador"
-                    },
-                    answer: 2,
-                    difficulty: Difficulty.Easy
-                ),
-                new(
-                    id: 2,
-                    text: "Qual é o maior planeta do nosso sistema solar?",
-                    items: new List<string> { "Terra", "Júpiter", "Marte", "Vênus" },
-                    answer: 1,
-                    difficulty: Difficulty.Easy
-                ),
-                new(
-                    id: 3,
-                    text: "Qual é o maior animal terrestre?",
-                    items: new List<string> { "Elefante", "Girafa", "Leão", "Baleia" },
-                    answer: 0,
-                    difficulty: Difficulty.Easy
-                ),
-                new(
-                    id: 4,
-                    text: "Quantos continentes existem no mundo?",
-                    items: new List<string> { "5", "6", "7", "8" },
-                    answer: 1,
-                    difficulty: Difficulty.Easy
-                ),
-                new(
-                    id: 5,
-                    text: "Qual é o nome do satélite natural da Terra?",
-                    items: new List<string> { "Lua", "Sol", "Marte", "Vênus" },
-                    answer: 0,
-                    difficulty: Difficulty.Easy
-                ),
-                new(
-                    id: 6,
-                    text: "Qual é o maior oceano do mundo?",
-                    items: new List<string> { "Atlântico", "Índico", "Ártico", "Pacífico" },
-                    answer: 3,
-                    difficulty: Difficulty.Medium
-                ),
-                new(
-                    id: 7,
-                    text: "Em que ano o homem chegou à Lua pela primeira vez?",
-                    items: new List<string> { "1959", "1965", "1969", "1973" },
-                    answer: 2,
-                    difficulty: Difficulty.Medium
-                ),
-                new(
-                    id: 8,
-                    text: "Quem pintou a famosa obra 'Mona Lisa'?",
-                    items: new List<string>
-                    {
-                        "Vincent van Gogh",
-                        "Pablo Picasso",
-                        "Leonardo da Vinci",
-                        "Michelangelo"
-                    },
-                    answer: 2,
-                    difficulty: Difficulty.Medium
-                ),
-                new(
-                    id: 9,
-                    text: "Qual é o nome do maior deserto do mundo?",
-                    items: new List<string>
-                    {
-                        "Deserto do Saara",
-                        "Deserto de Gobi",
-                        "Deserto de Kalahari",
-                        "Antártida"
-                    },
-                    answer: 3,
-                    difficulty: Difficulty.Medium
-                ),
-                new(
-                    id: 10,
-                    text: "Qual é a fórmula química da água?",
-                    items: new List<string> { "CO2", "O2", "H2O", "H2O2" },
-                    answer: 2,
-                    difficulty: Difficulty.Medium
-                ),
-                new(
-                    id: 11,
-                    text: "Qual é a cidade brasileira conhecida como 'A Terra da Luz'?",
-                    items: new List<string> { "Recife", "Fortaleza", "Salvador", "Rio de Janeiro" },
-                    answer: 1,
-                    difficulty: Difficulty.Hard
-                ),
-                new(
-                    id: 12,
-                    text: "Qual é o nome do famoso teatro de Fortaleza?",
-                    items: new List<string>
-                    {
-                        "Teatro José de Alencar",
-                        "Teatro da Paz",
-                        "Teatro São João",
-                        "Teatro do Centro Cultural"
-                    },
-                    answer: 0,
-                    difficulty: Difficulty.Hard
-                ),
-                new(
-                    id: 13,
-                    text: "Em que ano foi fundada a Universidade de Fortaleza (UNIFOR)?",
-                    items: new List<string> { "1965", "1973", "1980", "1990" },
-                    answer: 1,
-                    difficulty: Difficulty.Hard
-                ),
-                new(
-                    id: 14,
-                    text: "Qual é o nome do sistema operacional mais utilizado em smartphones?",
-                    items: new List<string> { "Windows Phone", "Android", "Mac OS", "Linux" },
-                    answer: 1,
-                    difficulty: Difficulty.Hard
-                ),
-                new(
-                    id: 15,
-                    text: "O que é um 'algoritmo de criptografia'?",
-                    items: new List<string>
-                    {
-                        "Uma técnica para esconder informações, tornando-as ilegíveis para quem não tem a chave correta",
-                        "Um sistema de armazenamento de dados em nuvem",
-                        "Um método de aumentar a velocidade de uma conexão de internet",
-                        "Um programa para melhorar a qualidade de imagens"
-                    },
-                    answer: 0,
-                    difficulty: Difficulty.Hard
-                ),
-                new(
-                    id: 16,
-                    text: "Qual é a teoria que descreve a gravitação como uma curvatura do espaço-tempo, proposta por Albert Einstein?",
-                    items: new List<string>
-                    {
-                        "Teoria das Cordas",
-                        "Teoria da Relatividade Geral",
-                        "Teoria Quântica de Campos",
-                        "Teoria da Gravitação Universal"
-                    },
-                    answer: 1,
-                    difficulty: Difficulty.Expert
-                ),
-                new(
-                    id: 17,
-                    text: "Qual é o nome da maior cadeia montanhosa do mundo, localizada no oeste da América do Norte?",
-                    items: new List<string> { "Andes", "Himalaia", "Alpes", "Rocky Mountains" },
-                    answer: 3,
-                    difficulty: Difficulty.Expert
-                ),
-                new(
-                    id: 18,
-                    text: "Quem é considerado o 'pai da genética moderna' por suas descobertas sobre a hereditariedade?",
-                    items: new List<string>
-                    {
-                        "Charles Darwin",
-                        "Gregor Mendel",
-                        "Louis Pasteur",
-                        "Albert Einstein"
-                    },
-                    answer: 1,
-                    difficulty: Difficulty.Expert
-                ),
-                new(
-                    id: 19,
-                    text: "Qual elemento químico é essencial para a produção de hormônios tireoidianos e é frequentemente adicionado ao sal de cozinha?",
-                    items: new List<string> { "Fósforo", "Iodo", "Potássio", "Cálcio" },
-                    answer: 1,
-                    difficulty: Difficulty.Expert
-                ),
-                new(
-                    id: 20,
-                    text: "Quem escreveu a famosa Alegoria da Caverna, que discute a percepção da realidade e o conhecimento?",
-                    items: new List<string> { "Aristóteles", "Sócrates", "Platão", "Pitagoras" },
-                    answer: 2,
-                    difficulty: Difficulty.Expert
-                )
+        {
+            new(
+                id: 1,
+                text: "Qual é a capital do Brasil?",
+                items: new List<string>
+                {
+                    "São Paulo",
+                    "Rio de Janeiro",
+                    "Brasília",
+                    "Salvador"
+                },
+                answer: 2,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 2,
+                text: "Qual é o maior planeta do nosso sistema solar?",
+                items: new List<string> { "Terra", "Júpiter", "Marte", "Vênus" },
+                answer: 1,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 3,
+                text: "Qual é o maior animal terrestre?",
+                items: new List<string> { "Elefante", "Girafa", "Leão", "Baleia" },
+                answer: 0,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 4,
+                text: "Quantos continentes existem no mundo?",
+                items: new List<string> { "5", "6", "7", "8" },
+                answer: 1,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 5,
+                text: "Qual é o nome do satélite natural da Terra?",
+                items: new List<string> { "Lua", "Sol", "Marte", "Vênus" },
+                answer: 0,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 6,
+                text: "Qual é o maior oceano do mundo?",
+                items: new List<string> { "Atlântico", "Índico", "Ártico", "Pacífico" },
+                answer: 3,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 7,
+                text: "Em que ano o homem chegou à Lua pela primeira vez?",
+                items: new List<string> { "1959", "1965", "1969", "1973" },
+                answer: 2,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 8,
+                text: "Quem pintou a famosa obra 'Mona Lisa'?",
+                items: new List<string>
+                {
+                    "Vincent van Gogh",
+                    "Pablo Picasso",
+                    "Leonardo da Vinci",
+                    "Michelangelo"
+                },
+                answer: 2,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 9,
+                text: "Qual é o nome do maior deserto do mundo?",
+                items: new List<string>
+                {
+                    "Deserto do Saara",
+                    "Deserto de Gobi",
+                    "Deserto de Kalahari",
+                    "Antártida"
+                },
+                answer: 3,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 10,
+                text: "Qual é a fórmula química da água?",
+                items: new List<string> { "CO2", "O2", "H2O", "H2O2" },
+                answer: 2,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 11,
+                text: "Qual é a cidade brasileira conhecida como 'A Terra da Luz'?",
+                items: new List<string> { "Recife", "Fortaleza", "Salvador", "Rio de Janeiro" },
+                answer: 1,
+                difficulty: Difficulty.Hard
+            ),
+            new(
+                id: 12,
+                text: "Qual é o nome do famoso teatro de Fortaleza?",
+                items: new List<string>
+                {
+                    "Teatro José de Alencar",
+                    "Teatro da Paz",
+                    "Teatro São João",
+                    "Teatro do Centro Cultural"
+                },
+                answer: 0,
+                difficulty: Difficulty.Hard
+            ),
+            new(
+                id: 13,
+                text: "Em que ano foi fundada a Universidade de Fortaleza (UNIFOR)?",
+                items: new List<string> { "1965", "1973", "1980", "1990" },
+                answer: 1,
+                difficulty: Difficulty.Hard
+            ),
+            new(
+                id: 14,
+                text: "Qual é o nome do sistema operacional mais utilizado em smartphones?",
+                items: new List<string> { "Windows Phone", "Android", "Mac OS", "Linux" },
+                answer: 1,
+                difficulty: Difficulty.Hard
+            ),
+            new(
+                id: 15,
+                text: "Qual é o nome do instrumento utilizado para medir a temperatura?",
+                items: new List<string> { "Termômetro", "Barômetro", "Higrômetro", "Anemômetro" },
+                answer: 0,
+                difficulty: Difficulty.Hard
+            ),
+            new(
+                id: 16,
+                text: "Quantos ossos existem no corpo humano adulto?",
+                items: new List<string> { "206", "300", "412", "105" },
+                answer: 0,
+                difficulty: Difficulty.Expert
+            ),
+            new(
+                id: 17,
+                text: "Qual é a unidade de medida da energia elétrica no Sistema Internacional?",
+                items: new List<string> { "Volt", "Joule", "Watt", "Newton" },
+                answer: 1,
+                difficulty: Difficulty.Expert
+            ),
+            new(
+                id: 18,
+                text: "Qual é o nome do gás que as plantas liberam durante a fotossíntese?",
+                items: new List<string> { "Nitrogênio", "Dióxido de Carbono", "Oxigênio", "Hidrogênio" },
+                answer: 2,
+                difficulty: Difficulty.Expert
+            ),
+            new(
+                id: 19,
+                text: "Qual é o menor planeta do Sistema Solar?",
+                items: new List<string> { "Mercúrio", "Vênus", "Marte", "Plutão" },
+                answer: 0,
+                difficulty: Difficulty.Expert
+            ),
+            new(
+                id: 20,
+                text: "Qual é o nome da camada externa da Terra onde vivemos?",
+                items: new List<string> { "Manto", "Crosta Terrestre", "Núcleo Externo", "Núcleo Interno" },
+                answer: 1,
+                difficulty: Difficulty.Expert
+            )
             }
         );
     }
