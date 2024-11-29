@@ -2,59 +2,126 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Velocidade de movimento
+    public int playerNumber = 1; // Identificador do jogador (1, 2, 3 ou 4)
+    public float moveSpeed = 5f; // Velocidade de movimento no chão
+    public float airMoveSpeed = 2f; // Velocidade de movimento no ar
     public float jumpForce = 7f; // Força do pulo
-    private Vector3 movement; // Direção do movimento
-    private Rigidbody rb; // Referência ao Rigidbody
-    private Animator animator; // Referência ao Animator
-
-    public int playerNumber; // Número do jogador
+    public float gravity = 35f; // Gravidade aplicada ao jogador
     public float deadzone = 0.2f; // Zona morta para evitar movimento indesejado
-    public float rotationSpeed = 10f; // Velocidade da rotação
-    private bool isGrounded = true; // Verifica se o jogador está no chão
+    public float rotationSpeed = 10f; // Velocidade da rotação no chão
+    public float airRotationSpeed = 5f; // Velocidade da rotação no ar
+    public LayerMask groundLayer; // Camada para detectar o chão
+
+    private CharacterController characterController;
+    private Vector3 movement; // Movimento horizontal
+    private Vector3 velocity; // Movimento vertical
+    private Animator animator; // Referência ao Animator
+    private bool isGrounded = false; // Verifica se o jogador está no chão
+
+    private string horizontalAxis; // Nome do eixo horizontal
+    private string verticalAxis; // Nome do eixo vertical
+    private string jumpButton; // Nome do botão de pulo
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>(); // Obtém o componente Animator
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+
+        // Configura os inputs baseados no número do jogador
+        horizontalAxis = $"P{playerNumber}_Horizontal";
+        verticalAxis = $"P{playerNumber}_Vertical";
+        jumpButton = $"P{playerNumber}_Jump";
+
+        // Verifica imediatamente se o personagem está no chão
+        CheckGrounded();
+
+        // Inicializa a velocidade vertical para evitar lançamento para cima
+        if (isGrounded)
+        {
+            velocity.y = -2f;
+        }
     }
 
     private void Update()
     {
-        // Captura os inputs para o jogador específico
-        float moveHorizontal = Input.GetAxis($"P{playerNumber}_Horizontal");
-        float moveVertical = -Input.GetAxis($"P{playerNumber}_Vertical"); // Inverte o eixo Y
+        // Detecta se o jogador está no chão
+        CheckGrounded();
 
-        // Aplica a deadzone para ignorar movimentos pequenos
+        // Captura os inputs específicos do jogador
+        float moveHorizontal = Input.GetAxis(horizontalAxis);
+        float moveVertical = -Input.GetAxis(verticalAxis);
+
+        // Aplica a deadzone
         if (Mathf.Abs(moveHorizontal) < deadzone) moveHorizontal = 0;
         if (Mathf.Abs(moveVertical) < deadzone) moveVertical = 0;
 
-        // Define a direção do movimento
+        // Define a direção de movimento
         movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
 
-        // Faz o personagem olhar na direção do movimento
-        if (movement.magnitude > 0.1f) // Apenas rotaciona se houver movimento significativo
+        // Define a velocidade de movimento com base no estado de grounded
+        float currentMoveSpeed = isGrounded ? moveSpeed : airMoveSpeed;
+
+        // Define a velocidade de rotação com base no estado de grounded
+        float currentRotationSpeed = isGrounded ? rotationSpeed : airRotationSpeed;
+
+        // Rotaciona o jogador para a direção do movimento
+        if (movement.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, currentRotationSpeed * Time.deltaTime);
         }
 
-        // Verifica entrada para pular (apenas o controle associado ao jogador)
-        if (Input.GetButtonDown($"P{playerNumber}_Jump") && isGrounded)
+        // Controle de pulo: detecta o botão específico de pulo
+        if (Input.GetButtonDown(jumpButton) && isGrounded)
         {
-            Jump();
+            Jump(); // Aplica força de pulo e inicia a animação
         }
+
+        // Aplica gravidade apenas quando não está no chão
+        if (!isGrounded)
+        {
+            velocity.y -= gravity * Time.deltaTime;
+        }
+
+        // Move o jogador com a velocidade ajustada
+        characterController.Move((movement * currentMoveSpeed + velocity) * Time.deltaTime);
 
         // Atualiza as animações
         UpdateAnimations();
     }
 
-    private void FixedUpdate()
+    private void CheckGrounded()
     {
-        if (rb != null)
+        // Verifica se o CharacterController está tocando o chão
+        isGrounded = characterController.isGrounded;
+
+        // Alternativa: Usar Raycast para detecção mais confiável
+        if (!isGrounded)
         {
-            // Move o jogador usando o Rigidbody
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.2f, groundLayer))
+            {
+                isGrounded = true;
+                velocity.y = -2f; // Evita pequenos saltos quando no chão
+            }
+        }
+
+        // Zera a velocidade vertical quando está no chão
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+    }
+
+    private void Jump()
+    {
+        velocity.y = jumpForce; // Aplica força de pulo
+        isGrounded = false; // Define como não no chão
+
+        // Ativa o trigger da animação de pulo
+        if (animator != null)
+        {
+            animator.SetTrigger("Jump");
         }
     }
 
@@ -62,41 +129,11 @@ public class PlayerController : MonoBehaviour
     {
         if (animator != null)
         {
-            // Define o estado de correr ou parar
-            bool isRunning = movement.magnitude > 0.1f; // Se há movimento significativo
-            animator.SetBool("isRunning", isRunning);
+            // Atualiza o estado de corrida
+            animator.SetBool("isRunning", movement.magnitude > 0.1f);
 
-            // Define o estado de pulo
+            // Atualiza o estado de pulo
             animator.SetBool("isJumping", !isGrounded);
-        }
-    }
-
-    private void Jump()
-    {
-        // Aplica a força de pulo no Rigidbody
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isGrounded = false; // Indica que o jogador não está no chão
-
-        // Ativa a animação de pulo
-        if (animator != null)
-        {
-            animator.SetTrigger("Jump");
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Verifica se o jogador tocou o chão
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-
-            // Reseta a animação de pulo
-            if (animator != null)
-            {
-                animator.ResetTrigger("Jump");
-                animator.SetBool("isJumping", false);
-            }
         }
     }
 }
