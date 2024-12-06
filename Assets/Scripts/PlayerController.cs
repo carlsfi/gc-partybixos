@@ -3,47 +3,44 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int playerNumber = 1; // Identificador do jogador (1, 2, 3 ou 4)
-    public float moveSpeed = 5f; // Velocidade de movimento no chão
-    public float airMoveSpeed = 2f; // Velocidade de movimento no ar
-    public float jumpForce = 7f; // Força do pulo
-    public float gravity = 35f; // Gravidade aplicada ao jogador
-    public float deadzone = 0.2f; // Zona morta para evitar movimento indesejado
-    public float rotationSpeed = 10f; // Velocidade da rotação no chão
-    public float airRotationSpeed = 5f; // Velocidade da rotação no ar
-    public LayerMask groundLayer; // Camada para detectar o chão
-    public float kickForce = 10f; // Força do chute na bola
+    public float moveSpeed = 5f;
+    public float airMoveSpeed = 2f;
+    public float jumpForce = 7f;
+    public float gravity = 35f;
+    public float deadzone = 0.2f;
+    public float rotationSpeed = 10f;
+    public float airRotationSpeed = 5f;
+    public LayerMask groundLayer;
 
     public Transform holdPoint; // Ponto onde o lixo será carregado
     private GameObject heldWaste = null; // Lixo que o jogador está segurando
-    private WasteManager wasteManager; // Referência ao WasteManager centralizado
+    private WasteManager wasteManager; // Referência ao WasteManager
 
     private CharacterController characterController;
-    private Vector3 movement; // Movimento horizontal
-    private Vector3 velocity; // Movimento vertical
-    private Animator animator; // Referência ao Animator
-    private bool isGrounded = false; // Verifica se o jogador está no chão
+    private Vector3 movement;
+    private Vector3 velocity;
+    private Animator animator;
+    private bool isGrounded = false;
 
-    private string horizontalAxis; // Nome do eixo horizontal
-    private string verticalAxis; // Nome do eixo vertical
-    private string jumpButton; // Nome do botão de pulo
-    private string actionButton; // Nome do botão de ação
+    private string horizontalAxis;
+    private string verticalAxis;
+    private string jumpButton;
+    private string actionButton;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        wasteManager = FindObjectOfType<WasteManager>(); // Encontra o WasteManager na cena
+        wasteManager = FindObjectOfType<WasteManager>();
 
         // Configura os inputs baseados no número do jogador
         horizontalAxis = $"P{playerNumber}_Horizontal";
         verticalAxis = $"P{playerNumber}_Vertical";
         jumpButton = $"P{playerNumber}_Jump";
-        actionButton = $"P{playerNumber}_X";
+        actionButton = $"P{playerNumber}_X"; // Botão "X" do controle Xbox
 
-        // Verifica imediatamente se o personagem está no chão
         CheckGrounded();
 
-        // Inicializa a velocidade vertical para evitar lançamento para cima
         if (isGrounded)
         {
             velocity.y = -2f;
@@ -52,73 +49,56 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Detecta se o jogador está no chão
         CheckGrounded();
 
-        // Captura os inputs específicos do jogador e inverte o eixo Y
         float moveHorizontal = Input.GetAxis(horizontalAxis);
-        float moveVertical = -Input.GetAxis(verticalAxis); // Inversão do eixo Y
+        float moveVertical = -Input.GetAxis(verticalAxis);
 
-        // Aplica a deadzone
         if (Mathf.Abs(moveHorizontal) < deadzone) moveHorizontal = 0;
         if (Mathf.Abs(moveVertical) < deadzone) moveVertical = 0;
 
-        // Define a direção de movimento
         movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
 
-        // Define a velocidade de movimento com base no estado de grounded
         float currentMoveSpeed = isGrounded ? moveSpeed : airMoveSpeed;
-
-        // Define a velocidade de rotação com base no estado de grounded
         float currentRotationSpeed = isGrounded ? rotationSpeed : airRotationSpeed;
 
-        // Rotaciona o jogador para a direção do movimento
         if (movement.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, currentRotationSpeed * Time.deltaTime);
         }
 
-        // Controle de pulo: detecta o botão específico de pulo
         if (Input.GetButtonDown(jumpButton) && isGrounded)
         {
-            Jump(); // Aplica força de pulo e inicia a animação
+            Jump();
         }
 
-        // Aplica gravidade apenas quando não está no chão
         if (!isGrounded)
         {
             velocity.y -= gravity * Time.deltaTime;
         }
 
-        // Move o jogador com a velocidade ajustada
         characterController.Move((movement * currentMoveSpeed + velocity) * Time.deltaTime);
 
-        // Gerencia as interações com lixo
         HandleWastePickup();
-        HandleWasteDrop();
 
-        // Atualiza as animações
         UpdateAnimations();
     }
 
     private void CheckGrounded()
     {
-        // Verifica se o CharacterController está tocando o chão
         isGrounded = characterController.isGrounded;
 
-        // Alternativa: Usar Raycast para detecção mais confiável
         if (!isGrounded)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.2f, groundLayer))
             {
                 isGrounded = true;
-                velocity.y = -2f; // Evita pequenos saltos quando no chão
+                velocity.y = -2f;
             }
         }
 
-        // Zera a velocidade vertical quando está no chão
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -127,13 +107,12 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        velocity.y = jumpForce; // Aplica força de pulo
-        isGrounded = false; // Define como não no chão
+        velocity.y = jumpForce;
+        isGrounded = false;
 
-        // Ativa a animação de pulo ou hop
         if (animator != null)
         {
-            if (movement.magnitude > 0.1f) // Se estiver se movendo
+            if (movement.magnitude > 0.1f)
             {
                 animator.SetTrigger("Hop");
             }
@@ -146,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleWastePickup()
     {
-        if (heldWaste == null && Input.GetButtonDown(actionButton))
+        if (heldWaste == null && Input.GetButtonDown(actionButton)) // Botão "X" do controle
         {
             Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, 2f);
 
@@ -171,64 +150,49 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleWasteDrop()
-    {
-        if (heldWaste != null && Input.GetButtonDown(actionButton))
-        {
-            Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, 2f);
-
-            foreach (var obj in nearbyObjects)
-            {
-                if (obj.CompareTag("Lixeira"))
-                {
-                    if (wasteManager.IsWasteInCorrectBin(heldWaste, obj.transform))
-                    {
-                        Debug.Log($"Jogador {playerNumber} depositou {heldWaste.name} na lixeira correta!");
-                    }
-                    else
-                    {
-                        Debug.Log($"Jogador {playerNumber} depositou {heldWaste.name} na lixeira errada!");
-                    }
-
-                    heldWaste.transform.SetParent(null);
-                    heldWaste.GetComponent<Collider>().enabled = true;
-                    heldWaste = null;
-                    break;
-                }
-            }
-        }
-    }
-
     private void UpdateAnimations()
     {
         if (animator != null)
         {
-            // Atualiza o estado de corrida
             animator.SetBool("isRunning", movement.magnitude > 0.1f);
-
-            // Atualiza o estado de pulo
             animator.SetBool("isJumping", !isGrounded);
         }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        // Verifica se o objeto colidido é a bola
         if (hit.collider.gameObject.name == "Bola")
         {
             Rigidbody ballRigidbody = hit.collider.attachedRigidbody;
 
-            // Aplica força apenas se for um Rigidbody válido e não kinematic
             if (ballRigidbody != null && !ballRigidbody.isKinematic)
             {
-                // Direção do chute: do personagem para a bola
                 Vector3 forceDirection = hit.point - transform.position;
-                forceDirection.y = 0; // Mantém a força apenas no plano horizontal
+                forceDirection.y = 0;
                 forceDirection.Normalize();
 
-                // Aplica a força do chute
-                ballRigidbody.AddForce(forceDirection * kickForce, ForceMode.Impulse);
+                ballRigidbody.AddForce(forceDirection * 10f, ForceMode.Impulse);
             }
+        }
+    }
+
+    // --- Novos Métodos Adicionados ---
+    public GameObject GetHeldWaste()
+    {
+        return heldWaste;
+    }
+
+    public bool HasWaste()
+    {
+        return heldWaste != null;
+    }
+
+    public void DropHeldWaste()
+    {
+        if (heldWaste != null)
+        {
+            Destroy(heldWaste);
+            heldWaste = null;
         }
     }
 }
