@@ -15,15 +15,20 @@ public class WasteManager : MonoBehaviour
     public Transform metalBin;
     public Transform paperBin;
 
-    // Referência ao jogador
-    public Transform player;
-    public Transform holdPoint; // Ponto onde o lixo será carregado
+    // Área para spawnar lixos
+    public Vector3 spawnAreaMin; // Coordenadas mínimas da área
+    public Vector3 spawnAreaMax; // Coordenadas máximas da área
 
-    private GameObject heldWaste = null; // Lixo que o jogador está segurando
+    public GameObject[] wastePrefabs; // Prefabs dos tipos de lixo
+    public int numberOfWastesToSpawn = 10; // Quantidade de lixos a spawnar
 
     void Start()
     {
+        // Organiza os lixos existentes na cena
         OrganizeWaste();
+
+        // Spawn inicial dos lixos
+        SpawnWastes();
     }
 
     // Organiza os lixos em listas baseadas na tag
@@ -31,96 +36,94 @@ public class WasteManager : MonoBehaviour
     {
         foreach (GameObject waste in GameObject.FindGameObjectsWithTag("Lixo"))
         {
-            string wasteType = waste.name.Split('-')[1].Trim(); // Obtém o tipo pelo nome do objeto
-            switch (wasteType)
-            {
-                case "plastico":
-                    plasticWaste.Add(waste);
-                    break;
-                case "vidro":
-                    glassWaste.Add(waste);
-                    break;
-                case "metal":
-                    metalWaste.Add(waste);
-                    break;
-                case "papel":
-                    paperWaste.Add(waste);
-                    break;
-                default:
-                    Debug.LogWarning($"Tipo de lixo desconhecido: {waste.name}");
-                    break;
-            }
+            AddWasteToList(waste);
         }
     }
 
-    void Update()
+    // Adiciona lixo à lista correspondente
+    private void AddWasteToList(GameObject waste)
     {
-        HandleWastePickup();
-        HandleWasteDrop();
-    }
+        string wasteType = GetWasteType(waste);
 
-    // Permite pegar o lixo ao apertar o botão X do controle Xbox
-    void HandleWastePickup()
-    {
-        if (Input.GetButtonDown("X") && heldWaste == null)
+        switch (wasteType)
         {
-            Collider[] nearbyObjects = Physics.OverlapSphere(player.position, 2f); // Checa objetos próximos
-            foreach (var obj in nearbyObjects)
-            {
-                if (obj.CompareTag("Lixo"))
-                {
-                    heldWaste = obj.gameObject;
-                    heldWaste.transform.SetParent(holdPoint);
-                    heldWaste.transform.localPosition = Vector3.zero; // Coloca o lixo na posição correta
-                    heldWaste.GetComponent<Collider>().enabled = false; // Desativa o colisor para evitar problemas
-                    Debug.Log($"Pegou: {heldWaste.name}");
-                    break;
-                }
-            }
+            case "plastico":
+                plasticWaste.Add(waste);
+                break;
+            case "vidro":
+                glassWaste.Add(waste);
+                break;
+            case "metal":
+                metalWaste.Add(waste);
+                break;
+            case "papel":
+                paperWaste.Add(waste);
+                break;
+            default:
+                Debug.LogWarning($"Tipo de lixo desconhecido: {waste.name}");
+                break;
         }
     }
 
-    // Permite soltar o lixo próximo à lixeira correta
-    void HandleWasteDrop()
+    // Retorna o tipo de lixo a partir do nome do objeto
+    private string GetWasteType(GameObject waste)
     {
-        if (Input.GetButtonDown("X") && heldWaste != null)
+        return waste.name.Split('-')[1].Trim(); // Supõe que o nome segue o padrão: "Objeto-tipo"
+    }
+
+    // Spawna lixos em posições aleatórias dentro da área definida
+    void SpawnWastes()
+    {
+        for (int i = 0; i < numberOfWastesToSpawn; i++)
         {
-            float distanceToPlasticBin = Vector3.Distance(heldWaste.transform.position, plasticBin.position);
-            float distanceToGlassBin = Vector3.Distance(heldWaste.transform.position, glassBin.position);
-            float distanceToMetalBin = Vector3.Distance(heldWaste.transform.position, metalBin.position);
-            float distanceToPaperBin = Vector3.Distance(heldWaste.transform.position, paperBin.position);
+            // Escolhe um prefab de lixo aleatório
+            GameObject wastePrefab = wastePrefabs[Random.Range(0, wastePrefabs.Length)];
 
-            string wasteType = heldWaste.name.Split('-')[1].Trim();
+            // Gera uma posição aleatória dentro da área definida
+            Vector3 randomPosition = new Vector3(
+                Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                Random.Range(spawnAreaMin.y, spawnAreaMax.y),
+                Random.Range(spawnAreaMin.z, spawnAreaMax.z)
+            );
 
-            if (distanceToPlasticBin < 2f && wasteType == "plastico")
-            {
-                DropWaste(plasticBin);
-            }
-            else if (distanceToGlassBin < 2f && wasteType == "vidro")
-            {
-                DropWaste(glassBin);
-            }
-            else if (distanceToMetalBin < 2f && wasteType == "metal")
-            {
-                DropWaste(metalBin);
-            }
-            else if (distanceToPaperBin < 2f && wasteType == "papel")
-            {
-                DropWaste(paperBin);
-            }
-            else
-            {
-                Debug.Log("O lixo não foi colocado na lixeira correta!");
-            }
+            // Instancia o lixo na posição gerada
+            GameObject spawnedWaste = Instantiate(wastePrefab, randomPosition, Quaternion.identity);
+            spawnedWaste.tag = "Lixo"; // Garante que o objeto tenha a tag "Lixo"
+
+            // Adiciona o lixo à lista correspondente
+            AddWasteToList(spawnedWaste);
         }
     }
 
-    // Solta o lixo na lixeira correta
-    void DropWaste(Transform bin)
+    // Verifica se o lixo foi depositado na lixeira correta
+    public bool IsWasteInCorrectBin(GameObject waste, Transform bin)
     {
-        Debug.Log($"Lixo {heldWaste.name} depositado na lixeira correta!");
-        heldWaste.transform.SetParent(null);
-        heldWaste.GetComponent<Collider>().enabled = true; // Reativa o colisor
-        heldWaste = null; // Reseta o objeto segurado
+        string wasteType = GetWasteType(waste);
+
+        if ((wasteType == "plastico" && bin == plasticBin) ||
+            (wasteType == "vidro" && bin == glassBin) ||
+            (wasteType == "metal" && bin == metalBin) ||
+            (wasteType == "papel" && bin == paperBin))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // Método para manipular o evento de lixo depositado
+    public void DepositWaste(GameObject waste, Transform bin)
+    {
+        if (IsWasteInCorrectBin(waste, bin))
+        {
+            Debug.Log($"Lixo {waste.name} depositado na lixeira correta!");
+        }
+        else
+        {
+            Debug.Log($"Lixo {waste.name} depositado na lixeira errada!");
+        }
+
+        // Remove o lixo do mundo ao depositar
+        Destroy(waste);
     }
 }

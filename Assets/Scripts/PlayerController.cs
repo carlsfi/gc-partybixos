@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer; // Camada para detectar o chão
     public float kickForce = 10f; // Força do chute na bola
 
+    public Transform holdPoint; // Ponto onde o lixo será carregado
+    private GameObject heldWaste = null; // Lixo que o jogador está segurando
+    private WasteManager wasteManager; // Referência ao WasteManager centralizado
+
     private CharacterController characterController;
     private Vector3 movement; // Movimento horizontal
     private Vector3 velocity; // Movimento vertical
@@ -22,16 +26,19 @@ public class PlayerController : MonoBehaviour
     private string horizontalAxis; // Nome do eixo horizontal
     private string verticalAxis; // Nome do eixo vertical
     private string jumpButton; // Nome do botão de pulo
+    private string actionButton; // Nome do botão de ação
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        wasteManager = FindObjectOfType<WasteManager>(); // Encontra o WasteManager na cena
 
         // Configura os inputs baseados no número do jogador
         horizontalAxis = $"P{playerNumber}_Horizontal";
         verticalAxis = $"P{playerNumber}_Vertical";
         jumpButton = $"P{playerNumber}_Jump";
+        actionButton = $"P{playerNumber}_X";
 
         // Verifica imediatamente se o personagem está no chão
         CheckGrounded();
@@ -87,6 +94,10 @@ public class PlayerController : MonoBehaviour
         // Move o jogador com a velocidade ajustada
         characterController.Move((movement * currentMoveSpeed + velocity) * Time.deltaTime);
 
+        // Gerencia as interações com lixo
+        HandleWastePickup();
+        HandleWasteDrop();
+
         // Atualiza as animações
         UpdateAnimations();
     }
@@ -129,6 +140,61 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animator.SetTrigger("Jump");
+            }
+        }
+    }
+
+    private void HandleWastePickup()
+    {
+        if (heldWaste == null && Input.GetButtonDown(actionButton))
+        {
+            Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, 2f);
+
+            foreach (var obj in nearbyObjects)
+            {
+                if (obj.CompareTag("Lixo"))
+                {
+                    heldWaste = obj.gameObject;
+                    heldWaste.transform.SetParent(holdPoint);
+                    heldWaste.transform.localPosition = Vector3.zero;
+                    heldWaste.GetComponent<Collider>().enabled = false;
+
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("Pickup");
+                    }
+
+                    Debug.Log($"Jogador {playerNumber} pegou: {heldWaste.name}");
+                    break;
+                }
+            }
+        }
+    }
+
+    private void HandleWasteDrop()
+    {
+        if (heldWaste != null && Input.GetButtonDown(actionButton))
+        {
+            Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, 2f);
+
+            foreach (var obj in nearbyObjects)
+            {
+                if (obj.CompareTag("Lixeira"))
+                {
+                    if (wasteManager.IsWasteInCorrectBin(heldWaste, obj.transform))
+                    {
+                        Debug.Log($"Jogador {playerNumber} depositou {heldWaste.name} na lixeira correta!");
+                    }
+                    else
+                    {
+                        Debug.Log($"Jogador {playerNumber} depositou {heldWaste.name} na lixeira errada!");
+                    }
+
+                    heldWaste.transform.SetParent(null);
+                    heldWaste.GetComponent<Collider>().enabled = true;
+                    heldWaste = null;
+                    break;
+                }
             }
         }
     }
