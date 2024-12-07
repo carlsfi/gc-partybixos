@@ -47,26 +47,29 @@ public class RoundManager : MonoBehaviour
     }
 
     void StartNewRound()
-    {
-        currentTimer = roundDuration;
-        currentQuestion = questions.GetRandomUnansweredQuestion();
+{
+    currentTimer = roundDuration;
+    currentQuestion = questions.GetRandomUnansweredQuestion();
 
-        // Reativa todos os hexágonos antes de começar uma nova rodada
-        foreach (var hexagon in hexagons)
-        {
-            hexagon.ShowHexagon(); // Mostra todos os hexágonos novamente
-        }
-        if (currentQuestion != null)
-        {
-            questionDisplay.DisplayQuestion();
-            DistributeAnswersToHexagons();
-            playerChoices.Clear(); // Limpa as escolhas dos jogadores
-        }
-        else
-        {
-            Debug.Log("Sem mais perguntas! Jogo finalizado.");
-        }
+    // Reativa todos os hexágonos antes de começar uma nova rodada
+    foreach (var hexagon in hexagons)
+    {
+        hexagon.ShowHexagon(); // Mostra todos os hexágonos novamente
     }
+
+    if (currentQuestion != null)
+    {
+        // Passa a pergunta para o QuestionDisplay exibir
+        questionDisplay.DisplayQuestion(currentQuestion);
+
+        DistributeAnswersToHexagons();
+        playerChoices.Clear(); // Limpa as escolhas dos jogadores
+    }
+    else
+    {
+        Debug.Log("Sem mais perguntas! Jogo finalizado.");
+    }
+}
 
     void EndRound()
     {
@@ -90,6 +93,8 @@ public class RoundManager : MonoBehaviour
                 hexagon.HideHexagon(); // Oculta hexágonos que não têm a resposta correta
             }
         }
+
+        Debug.Log($" Esta é a pergunta atual: {currentQuestion.Text}");
 
         // Verifica se os jogadores acertaram
         foreach (var entry in playerChoices)
@@ -135,7 +140,6 @@ public class RoundManager : MonoBehaviour
             int answerIndex = randomizedIndexes[i % randomizedIndexes.Count]; // Índice da resposta
             string letter = GetLetterForIndex(answerIndex); // Converte para A, B, C, D
             hexagons[i].Initialize(answerIndex, letter);
-            Debug.Log($"Indice da resposta correta no Hex {i}: {answerIndex}");
         }
 
     }

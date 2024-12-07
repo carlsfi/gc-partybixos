@@ -9,44 +9,24 @@ public class QuestionDisplay : MonoBehaviour
     public TextMeshProUGUI answerText3;  // Referência para o texto da resposta 3
     public TextMeshProUGUI answerText4;  // Referência para o texto da resposta 4
 
-    private Questions questionsScript;   
-
-    void Start()
+    public void DisplayQuestion(Question currentQuestion)
     {
-        questionsScript = FindObjectOfType<Questions>();  // Localiza o script Questions
-        DisplayQuestion();  // Exibe a primeira pergunta
-    }
-
-    // Função para exibir a pergunta e as respostas
-    public void DisplayQuestion()
-    {
-        Question question = questionsScript.GetRandomUnansweredQuestion();  // Obtém uma pergunta aleatória
-
-        if (question != null)
+        if (currentQuestion != null)
         {
             // Exibe a pergunta
-            questionText.text = question.Text;
+            questionText.text = currentQuestion.Text;
 
             // Exibe as respostas
-            answerText1.text = "A) " + question.Items[0];
-            answerText2.text = "B) " + question.Items[1];
-            answerText3.text = "C) " + question.Items[2];
-            answerText4.text = "D) " + question.Items[3];
-        }
-    }
-
-    // Função para verificar se a resposta está correta
-    public void CheckAnswer(int answerIndex)
-    {
-        Question question = questionsScript.GetQuestionById(1);  // Para exemplo, use o ID correto aqui
-
-        if (questionsScript.IsCorrectAnswer(question.Id, answerIndex))
-        {
-            Debug.Log("Resposta correta!");
+            answerText1.text = "A) " + currentQuestion.Items[0];
+            answerText2.text = "B) " + currentQuestion.Items[1];
+            answerText3.text = "C) " + currentQuestion.Items[2];
+            answerText4.text = "D) " + currentQuestion.Items[3];
         }
         else
         {
-            Debug.Log("Resposta errada.");
+            Debug.LogError("Nenhuma pergunta foi passada para exibição!");
         }
+
+        
     }
 }
