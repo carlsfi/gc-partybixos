@@ -34383,7 +34383,7 @@ PrefabInstance:
       objectReference: {fileID: -1580535799172915004, guid: 2a3d77d9e8df9b84b937f6948f08a6a1, type: 3}
     - target: {fileID: 919132149155446097, guid: 30b35cc8cc3cb184ab87a1ed5e6d39f1, type: 3}
       propertyPath: m_Name
-      value: Galo
+      value: Pato
       objectReference: {fileID: 0}
     - target: {fileID: 2770745672710420752, guid: 30b35cc8cc3cb184ab87a1ed5e6d39f1, type: 3}
       propertyPath: m_Materials.Array.data[0]
