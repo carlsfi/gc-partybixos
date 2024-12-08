@@ -1,47 +1,57 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts
+public class DeathZone : MonoBehaviour
 {
-    public class DeathZone : MonoBehaviour
+    private Dictionary<string, Vector3> playerRespawnPositions = new Dictionary<string, Vector3>
     {
-        public float respawnDelay = 0.5f;
+        { "CACHORRO", new Vector3(-2.3f, 10f, 0.8f) },
+        { "PATO", new Vector3(5.9f, 10f, -10.8f) },
+        { "POLAR", new Vector3(-3f, 10f, -10.8f) },
+        { "URSO", new Vector3(5.7f, 10f, -1.1f) },
+    };
 
-        private Dictionary<string, Vector3> playerRespawnPositions = new Dictionary<string, Vector3>
-        {
-            { "CACHORRO", new Vector3(-2.3f, 10f, 0.8f) },
-            { "PATO", new Vector3(5.9f, 10f, -10.8f) },
-            { "POLAR", new Vector3(-3f, 10f, -10.8f) },
-            { "URSO", new Vector3(5.7f, 10f, -1.1f) },
-        };
+    private HashSet<GameObject> playersInDeathZone = new HashSet<GameObject>();
 
-        private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
         {
-            if (collider.gameObject.CompareTag("Player"))
+            Debug.Log($"Jogador {collider.gameObject.name} entrou na zona de morte.");
+
+            if (!playersInDeathZone.Contains(collider.gameObject))
             {
-                RespawnPlayerWithDelay(collider.gameObject);
+                playersInDeathZone.Add(collider.gameObject);
+                RoundManager.Instance.PlayerLeftHexagon(collider.gameObject);
             }
         }
+    }
 
-        private async void RespawnPlayerWithDelay(GameObject player)
+    public Vector3 GetRespawnPosition(string playerName)
+    {
+        if (playerRespawnPositions.TryGetValue(playerName, out Vector3 respawnPosition))
         {
-            Debug.Log($"Jogador {player.name} morreu. Respawn em {respawnDelay} segundos...");
+            return respawnPosition;
+        }
+        else
+        {
+            Debug.LogWarning($"Nenhuma posi√ß√£o de respawn encontrada para {playerName}. Usando posi√ß√£o padr√£o.");
+            return new Vector3(0f, 10f, 0f);
+        }
+    }
 
-            await Task.Delay((int)(respawnDelay * 1000));
-
-            if (playerRespawnPositions.TryGetValue(player.name, out Vector3 respawnPosition))
+    public void RespawnAllPlayers()
+    {
+        foreach (var player in playersInDeathZone)
+        {
+            if (player != null)
             {
-                Debug.Log($"Respawnando o jogador {player.name} na posiÁ„o {respawnPosition}");
+                string playerName = player.name;
+                Vector3 respawnPosition = GetRespawnPosition(playerName);
                 player.transform.position = respawnPosition;
-            }
-            else
-            {
-                Debug.LogWarning(
-                    $"Nenhuma posiÁ„o de respawn encontrada para {player.name}. Usando posiÁ„o padr„o."
-                );
-                player.transform.position = new Vector3(0f, 10f, 0f);
+                //Debug.Log($"Respawnando jogador {playerName} na posi√ß√£o {respawnPosition}.");
             }
         }
+        playersInDeathZone.Clear();
     }
 }

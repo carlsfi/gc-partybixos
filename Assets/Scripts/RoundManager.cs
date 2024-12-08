@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -15,109 +16,179 @@ public class RoundManager : MonoBehaviour
     public List<Hexagon> hexagons; // Lista de hexágonos na cena
     private Question currentQuestion;
 
-    private Dictionary<GameObject, int> playerChoices = new Dictionary<GameObject, int>();
+    private Dictionary<GameObject, bool> playerStatus = new Dictionary<GameObject, bool>(); // Controle de status de jogadores
+    private List<GameObject> fallenPlayers = new List<GameObject>(); // Lista de jogadores que caíram
+
+    public float resetDelay = 5f; // Tempo entre o final da rodada e o início da próxima
+    private DeathZone deathZone; // Referência para o DeathZone
+
+    private int currentRound = 1; // Contador de rodadas
+    private bool isProcessingRound = false; // Controle para evitar finalizar antes de processar tudo
+    [SerializeField] 
+    private HUDManager hudManager; // Referência do HUDManager no Inspector
+    [SerializeField] private int winningScore = 2; // Pontuação para vencer o minigame
+    [SerializeField] private string boardSceneName = "Tabuleiro"; // Nome da cena do tabuleiro
+
+
 
     void Awake()
     {
         Instance = this;
+        if (hudManager == null)
+    {
+        Debug.LogError("HUDManager não foi configurado no Inspector!");
+    }
+
     }
 
     void Start()
     {
         currentTimer = roundDuration;
+        deathZone = FindObjectOfType<DeathZone>(); // Localiza o DeathZone na cena
         StartNewRound();
     }
 
     void Update()
     {
-        if (currentTimer > 0)
+        if (!isProcessingRound)
         {
-            currentTimer -= Time.deltaTime;
-            UpdateTimerUI();
-        }
-        else
-        {
-            EndRound();
+            if (currentTimer > 0)
+            {
+                currentTimer -= Time.deltaTime;
+                UpdateTimerUI();
+            }
+            else
+            {
+                isProcessingRound = true; // Bloqueia novas ações até o processamento terminar
+                StartCoroutine(ProcessHexagonDisappearance());
+            }
         }
     }
 
     void UpdateTimerUI()
     {
-        timerText.text = "Tempo: " + Mathf.CeilToInt(currentTimer) + "s";
+        timerText.text = "Tempo: " + Mathf.CeilToInt(currentTimer) + " segundos";
     }
+
+    
 
     void StartNewRound()
-{
-    currentTimer = roundDuration;
-    currentQuestion = questions.GetRandomUnansweredQuestion();
-
-    // Reativa todos os hexágonos antes de começar uma nova rodada
-    foreach (var hexagon in hexagons)
     {
-        hexagon.ShowHexagon(); // Mostra todos os hexágonos novamente
-    }
+        isProcessingRound = false; // Reseta o estado de processamento
+        currentTimer = roundDuration;
+        currentQuestion = questions.GetRandomUnansweredQuestion();
 
-    if (currentQuestion != null)
-    {
-        // Passa a pergunta para o QuestionDisplay exibir
-        questionDisplay.DisplayQuestion(currentQuestion);
+        Debug.Log($"Iniciando rodada {currentRound}!");
 
-        DistributeAnswersToHexagons();
-        playerChoices.Clear(); // Limpa as escolhas dos jogadores
-    }
-    else
-    {
-        Debug.Log("Sem mais perguntas! Jogo finalizado.");
-    }
-}
-
-    void EndRound()
-    {
-        Debug.Log("Rodada encerrada!");
+        // Reativa todos os hexágonos antes de começar uma nova rodada
+        foreach (var hexagon in hexagons)
+        {
+            hexagon.ShowHexagon(); // Mostra todos os hexágonos novamente
+        }
 
         if (currentQuestion != null)
         {
-            Debug.Log($"A resposta correta é: {currentQuestion.Answer}");
+            // Passa a pergunta para o QuestionDisplay exibir
+            questionDisplay.DisplayQuestion(currentQuestion);
+            DistributeAnswersToHexagons();
+            playerStatus.Clear(); // Reseta o status dos jogadores
+
+            // Reposiciona jogadores caídos
+            if (deathZone != null)
+            {
+                deathZone.RespawnAllPlayers();
+            }
         }
         else
         {
-            Debug.LogError("currentQuestion é null. Não foi possível determinar a resposta correta.");
-            return; // Evita erros se currentQuestion estiver null
+            Debug.Log("Sem mais perguntas! Jogo finalizado.");
         }
+    }
 
-        // Esconde hexágonos errados
+    IEnumerator ProcessHexagonDisappearance()
+    {
+        Debug.Log("Escondendo hexágonos errados...");
+
+        // Esconde os hexágonos errados
         foreach (var hexagon in hexagons)
         {
             if (hexagon.answerIndex != currentQuestion.Answer)
             {
-                hexagon.HideHexagon(); // Oculta hexágonos que não têm a resposta correta
+                hexagon.HideHexagon();
             }
         }
 
-        Debug.Log($" Esta é a pergunta atual: {currentQuestion.Text}");
+        // Aguarda para permitir que os jogadores caiam
+        yield return new WaitForSeconds(4f);
 
-        // Verifica se os jogadores acertaram
-        foreach (var entry in playerChoices)
+        ProcessFallenPlayers(); // Processa os jogadores após a queda
+    }
+
+    void ProcessFallenPlayers()
+    {
+        Debug.Log("Processando jogadores que caíram na zona de morte...");
+
+        foreach (var player in fallenPlayers)
         {
-            GameObject player = entry.Key;
-            int chosenAnswer = entry.Value;
-
-
-            // Aqui deve haver uma correspondência com o índice da resposta correta da currentQuestion
-            if (chosenAnswer == currentQuestion.Answer)
+            if (playerStatus.ContainsKey(player))
             {
-                Debug.Log($"Jogador {player.name} acertou a resposta!");
-                // Aqui você pode adicionar lógica de pontuação ou feedback positivo
+                playerStatus[player] = false; // Atualiza o status como caído
+            }
+        }
+
+        fallenPlayers.Clear(); // Limpa a lista após o processamento
+        EndRound();
+    }
+
+    void EndRound()
+{
+    Debug.Log($"Rodada {currentRound} encerrada!");
+
+    if (currentQuestion != null)
+    {
+        Debug.Log($"A resposta correta é: {currentQuestion.Answer}");
+    }
+    else
+    {
+        Debug.LogError("currentQuestion é null. Não foi possível determinar a resposta correta.");
+        return; // Evita erros se currentQuestion estiver null
+    }
+
+    foreach (var entry in playerStatus)
+    {
+        GameObject player = entry.Key;
+        bool isSafe = entry.Value;
+
+        if (isSafe)
+        {
+            Debug.Log($"Rodada {currentRound}: Jogador {player.name} ganhou um ponto por permanecer no hexágono!");
+            if (hudManager != null)
+            {
+                hudManager.UpdateScore(player.name, hudManager.GetPlayerScore(player.name) + 1);
             }
             else
             {
-                Debug.Log($"Jogador {player.name} errou a resposta! A resposta correta era: {currentQuestion.Answer}");
-                // Lógica para penalizar ou notificar o jogador
+                Debug.LogError("HUDManager não está configurado!");
             }
         }
+        else
+        {
+            Debug.Log($"Rodada {currentRound}: Jogador {player.name} caiu e não ganhou pontos!");
+        }
+    }
 
-        // Inicia nova rodada após um pequeno delay
-        Invoke("StartNewRound", 2f);
+    CheckForWinner(); // Verifica se há um vencedor
+
+    currentRound++; // Incrementa o contador de rodadas
+
+    StartCoroutine(ResetRoundWithDelay());
+}
+
+
+    IEnumerator<WaitForSeconds> ResetRoundWithDelay()
+    {
+        yield return new WaitForSeconds(resetDelay);
+        StartNewRound();
     }
 
     void DistributeAnswersToHexagons()
@@ -141,7 +212,6 @@ public class RoundManager : MonoBehaviour
             string letter = GetLetterForIndex(answerIndex); // Converte para A, B, C, D
             hexagons[i].Initialize(answerIndex, letter);
         }
-
     }
 
     // Função auxiliar para mapear índice (0, 1, 2, 3) para letras (A, B, C, D)
@@ -159,9 +229,29 @@ public class RoundManager : MonoBehaviour
 
     public void PlayerOnHexagon(GameObject player, int chosenAnswer)
     {
-        if (!playerChoices.ContainsKey(player))
+        if (!playerStatus.ContainsKey(player))
         {
-            playerChoices[player] = chosenAnswer; // Salva a escolha do jogador
+            playerStatus[player] = true; // Marca como seguro
+        }
+    }
+
+    public void PlayerEnteredHexagon(GameObject player)
+    {
+        if (!playerStatus.ContainsKey(player))
+        {
+            playerStatus[player] = true; // Marca como seguro
+        }
+    }
+
+    public void PlayerLeftHexagon(GameObject player)
+    {
+        if (playerStatus.ContainsKey(player))
+        {
+            playerStatus[player] = false; // Marca como caído
+            if (!fallenPlayers.Contains(player))
+            {
+                fallenPlayers.Add(player); // Adiciona à lista de caídos
+            }
         }
     }
 
@@ -172,4 +262,26 @@ public class RoundManager : MonoBehaviour
             hexagon.ResetHexagon();
         }
     }
+
+    void CheckForWinner()
+{
+    foreach (var playerName in hudManager.GetPlayerNames())
+    {
+        int playerScore = hudManager.GetPlayerScore(playerName);
+
+        if (playerScore >= winningScore)
+        {
+            Debug.Log($"Jogador {playerName} venceu o minigame com {playerScore} pontos!");
+            EndMinigame();
+            return;
+        }
+    }
+}
+
+    void EndMinigame()
+    {
+        Debug.Log("Encerrando o minigame e voltando para o tabuleiro...");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(boardSceneName);
+    }
+
 }

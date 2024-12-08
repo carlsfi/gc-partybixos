@@ -27,7 +27,7 @@ public class Hexagon : MonoBehaviour
     {
     if (collision.gameObject.CompareTag("Player"))
     {
-        Debug.Log($"Jogador {collision.gameObject.name} colidiu com o hexágono!");
+        //Debug.Log($"Jogador {collision.gameObject.name} colidiu com o hexágono!");
         RoundManager.Instance.PlayerOnHexagon(collision.gameObject, answerIndex);
     }
     }
