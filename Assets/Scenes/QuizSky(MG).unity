@@ -5061,7 +5061,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  kickForce: 10
+  holdPoint: {fileID: 0}
 --- !u!95 &760868086
 Animator:
   serializedVersion: 5
@@ -5547,7 +5547,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  kickForce: 10
+  holdPoint: {fileID: 0}
 --- !u!95 &912596103
 Animator:
   serializedVersion: 5
@@ -8328,7 +8328,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  kickForce: 10
+  holdPoint: {fileID: 0}
 --- !u!95 &1320370721
 Animator:
   serializedVersion: 5
@@ -9057,6 +9057,7 @@ GameObject:
   - component: {fileID: 1441209566}
   - component: {fileID: 1441209570}
   - component: {fileID: 1441209569}
+  - component: {fileID: 1441209571}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -9181,6 +9182,18 @@ MonoBehaviour:
   answerText2: {fileID: 2078936081}
   answerText3: {fileID: 1362408443}
   answerText4: {fileID: 36116186}
+--- !u!114 &1441209571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441209563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eee578ee5522b64cb5fa7e95a081cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458697269
 GameObject:
   m_ObjectHideFlags: 0
@@ -10185,7 +10198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundDuration: 5
   questionDisplay: {fileID: 1441209570}
-  questions: {fileID: 1441209569}
+  questions: {fileID: 1441209571}
   timerText: {fileID: 1704090390}
   hexagons:
   - {fileID: 1704839796}
@@ -11184,7 +11197,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  kickForce: 10
+  holdPoint: {fileID: 0}
 --- !u!95 &1725725379
 Animator:
   serializedVersion: 5
