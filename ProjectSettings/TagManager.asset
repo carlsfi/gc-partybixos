@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hexagon
   - Ground
+  - Lixo
+  - Lixeira
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - Water
   - UI
   - Object
-  - 
-  - 
+  - Ground
+  - Lixeiras
   - 
   - 
   - 
