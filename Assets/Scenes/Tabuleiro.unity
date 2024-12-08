@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9e500d7fea41813418545f1954b20bec, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6616d6701ad19014f9d1e91801250ffb, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6612,7 +6612,7 @@ Transform:
   m_GameObject: {fileID: 161306543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 34.2, y: 61.5, z: -42.1}
+  m_LocalPosition: {x: 63.6, y: 120.1, z: -41.2}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16957,76 +16957,6 @@ MonoBehaviour:
   - {fileID: 1707686415}
   - {fileID: 1859540652}
   - {fileID: 117281400}
-  - {fileID: 1208333646}
-  - {fileID: 1320723851}
-  - {fileID: 360687493}
-  - {fileID: 1928828979}
-  - {fileID: 1403695667}
-  - {fileID: 272196782}
-  - {fileID: 807071415}
-  - {fileID: 1775830202}
-  - {fileID: 1081107485}
-  - {fileID: 1505703832}
-  - {fileID: 1479554378}
-  - {fileID: 1040379972}
-  - {fileID: 19074723}
-  - {fileID: 653586256}
-  - {fileID: 1902311133}
-  - {fileID: 1633409206}
-  - {fileID: 1784263991}
-  - {fileID: 1202851450}
-  - {fileID: 783795146}
-  - {fileID: 134246706}
-  - {fileID: 1776846301}
-  - {fileID: 407778371}
-  - {fileID: 956555851}
-  - {fileID: 646508577}
-  - {fileID: 377283939}
-  - {fileID: 624985478}
-  - {fileID: 826661418}
-  - {fileID: 1700439007}
-  - {fileID: 22432549}
-  - {fileID: 760686797}
-  - {fileID: 356003427}
-  - {fileID: 342757569}
-  - {fileID: 11899674}
-  - {fileID: 1355617099}
-  - {fileID: 1871567701}
-  - {fileID: 1256965268}
-  - {fileID: 196829801}
-  - {fileID: 1475154518}
-  - {fileID: 1278029264}
-  - {fileID: 1109419579}
-  - {fileID: 596635825}
-  - {fileID: 942964211}
-  - {fileID: 675596530}
-  - {fileID: 988505256}
-  - {fileID: 561466111}
-  - {fileID: 77760604}
-  - {fileID: 2102263326}
-  - {fileID: 1349090779}
-  - {fileID: 77871764}
-  - {fileID: 711618433}
-  - {fileID: 1938542667}
-  - {fileID: 984471188}
-  - {fileID: 342315263}
-  - {fileID: 1374755123}
-  - {fileID: 714894963}
-  - {fileID: 153413634}
-  - {fileID: 1104183395}
-  - {fileID: 1442176120}
-  - {fileID: 1237144796}
-  - {fileID: 194536598}
-  - {fileID: 1754240989}
-  - {fileID: 1308239311}
-  - {fileID: 1108352764}
-  - {fileID: 1462147667}
-  - {fileID: 1938479943}
-  - {fileID: 152100514}
-  - {fileID: 1346944369}
-  - {fileID: 783374115}
-  - {fileID: 1434844338}
-  - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
   rotationSpeed: 10
@@ -27530,76 +27460,6 @@ MonoBehaviour:
   - {fileID: 1707686415}
   - {fileID: 1859540652}
   - {fileID: 117281400}
-  - {fileID: 1208333646}
-  - {fileID: 1320723851}
-  - {fileID: 360687493}
-  - {fileID: 1928828979}
-  - {fileID: 1403695667}
-  - {fileID: 272196782}
-  - {fileID: 807071415}
-  - {fileID: 1775830202}
-  - {fileID: 1081107485}
-  - {fileID: 1505703832}
-  - {fileID: 1479554378}
-  - {fileID: 1040379972}
-  - {fileID: 19074723}
-  - {fileID: 653586256}
-  - {fileID: 1902311133}
-  - {fileID: 1633409206}
-  - {fileID: 1784263991}
-  - {fileID: 1202851450}
-  - {fileID: 783795146}
-  - {fileID: 134246706}
-  - {fileID: 1776846301}
-  - {fileID: 407778371}
-  - {fileID: 956555851}
-  - {fileID: 646508577}
-  - {fileID: 377283939}
-  - {fileID: 624985478}
-  - {fileID: 826661418}
-  - {fileID: 1700439007}
-  - {fileID: 22432549}
-  - {fileID: 760686797}
-  - {fileID: 356003427}
-  - {fileID: 342757569}
-  - {fileID: 11899674}
-  - {fileID: 1355617099}
-  - {fileID: 1871567701}
-  - {fileID: 1256965268}
-  - {fileID: 196829801}
-  - {fileID: 1475154518}
-  - {fileID: 1278029264}
-  - {fileID: 1109419579}
-  - {fileID: 596635825}
-  - {fileID: 942964211}
-  - {fileID: 675596530}
-  - {fileID: 988505256}
-  - {fileID: 561466111}
-  - {fileID: 77760604}
-  - {fileID: 2102263326}
-  - {fileID: 1349090779}
-  - {fileID: 77871764}
-  - {fileID: 711618433}
-  - {fileID: 1938542667}
-  - {fileID: 984471188}
-  - {fileID: 342315263}
-  - {fileID: 1374755123}
-  - {fileID: 714894963}
-  - {fileID: 153413634}
-  - {fileID: 1104183395}
-  - {fileID: 1442176120}
-  - {fileID: 1237144796}
-  - {fileID: 194536598}
-  - {fileID: 1754240989}
-  - {fileID: 1308239311}
-  - {fileID: 1108352764}
-  - {fileID: 1462147667}
-  - {fileID: 1938479943}
-  - {fileID: 152100514}
-  - {fileID: 1346944369}
-  - {fileID: 783374115}
-  - {fileID: 1434844338}
-  - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
   rotationSpeed: 10
@@ -34523,7 +34383,7 @@ PrefabInstance:
       objectReference: {fileID: -1580535799172915004, guid: 2a3d77d9e8df9b84b937f6948f08a6a1, type: 3}
     - target: {fileID: 919132149155446097, guid: 30b35cc8cc3cb184ab87a1ed5e6d39f1, type: 3}
       propertyPath: m_Name
-      value: Galo
+      value: Pato
       objectReference: {fileID: 0}
     - target: {fileID: 2770745672710420752, guid: 30b35cc8cc3cb184ab87a1ed5e6d39f1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -34643,76 +34503,6 @@ MonoBehaviour:
   - {fileID: 1707686415}
   - {fileID: 1859540652}
   - {fileID: 117281400}
-  - {fileID: 1208333646}
-  - {fileID: 1320723851}
-  - {fileID: 360687493}
-  - {fileID: 1928828979}
-  - {fileID: 1403695667}
-  - {fileID: 272196782}
-  - {fileID: 807071415}
-  - {fileID: 1775830202}
-  - {fileID: 1081107485}
-  - {fileID: 1505703832}
-  - {fileID: 1479554378}
-  - {fileID: 1040379972}
-  - {fileID: 19074723}
-  - {fileID: 653586256}
-  - {fileID: 1902311133}
-  - {fileID: 1633409206}
-  - {fileID: 1784263991}
-  - {fileID: 1202851450}
-  - {fileID: 783795146}
-  - {fileID: 134246706}
-  - {fileID: 1776846301}
-  - {fileID: 407778371}
-  - {fileID: 956555851}
-  - {fileID: 646508577}
-  - {fileID: 377283939}
-  - {fileID: 624985478}
-  - {fileID: 826661418}
-  - {fileID: 1700439007}
-  - {fileID: 22432549}
-  - {fileID: 760686797}
-  - {fileID: 356003427}
-  - {fileID: 342757569}
-  - {fileID: 11899674}
-  - {fileID: 1355617099}
-  - {fileID: 1871567701}
-  - {fileID: 1256965268}
-  - {fileID: 196829801}
-  - {fileID: 1475154518}
-  - {fileID: 1278029264}
-  - {fileID: 1109419579}
-  - {fileID: 596635825}
-  - {fileID: 942964211}
-  - {fileID: 675596530}
-  - {fileID: 988505256}
-  - {fileID: 561466111}
-  - {fileID: 77760604}
-  - {fileID: 2102263326}
-  - {fileID: 1349090779}
-  - {fileID: 77871764}
-  - {fileID: 711618433}
-  - {fileID: 1938542667}
-  - {fileID: 984471188}
-  - {fileID: 342315263}
-  - {fileID: 1374755123}
-  - {fileID: 714894963}
-  - {fileID: 153413634}
-  - {fileID: 1104183395}
-  - {fileID: 1442176120}
-  - {fileID: 1237144796}
-  - {fileID: 194536598}
-  - {fileID: 1754240989}
-  - {fileID: 1308239311}
-  - {fileID: 1108352764}
-  - {fileID: 1462147667}
-  - {fileID: 1938479943}
-  - {fileID: 152100514}
-  - {fileID: 1346944369}
-  - {fileID: 783374115}
-  - {fileID: 1434844338}
-  - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
   rotationSpeed: 10
@@ -41339,76 +41129,6 @@ MonoBehaviour:
   - {fileID: 1707686415}
   - {fileID: 1859540652}
   - {fileID: 117281400}
-  - {fileID: 1208333646}
-  - {fileID: 1320723851}
-  - {fileID: 360687493}
-  - {fileID: 1928828979}
-  - {fileID: 1403695667}
-  - {fileID: 272196782}
-  - {fileID: 807071415}
-  - {fileID: 1775830202}
-  - {fileID: 1081107485}
-  - {fileID: 1505703832}
-  - {fileID: 1479554378}
-  - {fileID: 1040379972}
-  - {fileID: 19074723}
-  - {fileID: 653586256}
-  - {fileID: 1902311133}
-  - {fileID: 1633409206}
-  - {fileID: 1784263991}
-  - {fileID: 1202851450}
-  - {fileID: 783795146}
-  - {fileID: 134246706}
-  - {fileID: 1776846301}
-  - {fileID: 407778371}
-  - {fileID: 956555851}
-  - {fileID: 646508577}
-  - {fileID: 377283939}
-  - {fileID: 624985478}
-  - {fileID: 826661418}
-  - {fileID: 1700439007}
-  - {fileID: 22432549}
-  - {fileID: 760686797}
-  - {fileID: 356003427}
-  - {fileID: 342757569}
-  - {fileID: 11899674}
-  - {fileID: 1355617099}
-  - {fileID: 1871567701}
-  - {fileID: 1256965268}
-  - {fileID: 196829801}
-  - {fileID: 1475154518}
-  - {fileID: 1278029264}
-  - {fileID: 1109419579}
-  - {fileID: 596635825}
-  - {fileID: 942964211}
-  - {fileID: 675596530}
-  - {fileID: 988505256}
-  - {fileID: 561466111}
-  - {fileID: 77760604}
-  - {fileID: 2102263326}
-  - {fileID: 1349090779}
-  - {fileID: 77871764}
-  - {fileID: 711618433}
-  - {fileID: 1938542667}
-  - {fileID: 984471188}
-  - {fileID: 342315263}
-  - {fileID: 1374755123}
-  - {fileID: 714894963}
-  - {fileID: 153413634}
-  - {fileID: 1104183395}
-  - {fileID: 1442176120}
-  - {fileID: 1237144796}
-  - {fileID: 194536598}
-  - {fileID: 1754240989}
-  - {fileID: 1308239311}
-  - {fileID: 1108352764}
-  - {fileID: 1462147667}
-  - {fileID: 1938479943}
-  - {fileID: 152100514}
-  - {fileID: 1346944369}
-  - {fileID: 783374115}
-  - {fileID: 1434844338}
-  - {fileID: 2059696289}
   currentWaypointIndex: 0
   moveSpeed: 20
   rotationSpeed: 10
@@ -48615,6 +48335,8 @@ MonoBehaviour:
   - {fileID: 1362752424}
   turnManager: {fileID: 2116523316}
   hudCanvasGroup: {fileID: 1285822265}
+  leftPlayers: []
+  rightPlayers: []
 --- !u!225 &1285822265
 CanvasGroup:
   m_ObjectHideFlags: 0

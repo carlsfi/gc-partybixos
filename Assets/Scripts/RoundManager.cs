@@ -158,7 +158,7 @@ public class RoundManager : MonoBehaviour
     {
         GameObject player = entry.Key;
         bool isSafe = entry.Value;
-
+        Debug.Log(player.name);
         if (isSafe)
         {
             Debug.Log($"Rodada {currentRound}: Jogador {player.name} ganhou um ponto por permanecer no hexágono!");

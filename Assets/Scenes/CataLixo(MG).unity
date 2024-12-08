@@ -1349,7 +1349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 93704089}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldPoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,7 +1543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119505401}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2932,7 +2932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212532756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KayKit Animated Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6431,7 +6431,7 @@ GameObject:
   - component: {fileID: 435234963}
   - component: {fileID: 435234965}
   - component: {fileID: 435234964}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_panda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8445,7 +8445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 562506890}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8461,7 +8461,7 @@ Transform:
   m_GameObject: {fileID: 562506889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.016, y: 1.29, z: 0.72}
+  m_LocalPosition: {x: -0.016, y: 0.5, z: 0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8652,7 +8652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583188561}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9485,7 +9485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652524661}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9516,7 +9516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 654131030}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9942,7 +9942,7 @@ GameObject:
   - component: {fileID: 684020978}
   - component: {fileID: 684020980}
   - component: {fileID: 684020979}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_bearHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15973,7 +15973,7 @@ GameObject:
   - component: {fileID: 1057584835}
   - component: {fileID: 1057584837}
   - component: {fileID: 1057584836}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_bearArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26134,7 +26134,7 @@ GameObject:
   - component: {fileID: 1644448012}
   - component: {fileID: 1644448014}
   - component: {fileID: 1644448013}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_bearArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28188,7 +28188,6 @@ MonoBehaviour:
   glassBin: {fileID: 172654746562055253}
   metalBin: {fileID: 4886114346902188992}
   paperBin: {fileID: 4805283810723600333}
-  scoreManager: {fileID: 813276175}
   spawnAreaMin: {x: -50, y: 1.2, z: 10}
   spawnAreaMax: {x: 50, y: 1.2, z: -80}
   numberOfWastesToSpawn: 10
@@ -29910,7 +29909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1883367433}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30382,7 +30381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1914787938}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32288,7 +32287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019637436}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33766,9 +33765,10 @@ GameObject:
   - component: {fileID: 2110205794}
   - component: {fileID: 2110205797}
   - component: {fileID: 2110205796}
-  m_Layer: 0
+  - component: {fileID: 2110205798}
+  m_Layer: 3
   m_Name: URSO
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33856,11 +33856,38 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 20
+  airRotationSpeed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   holdPoint: {fileID: 0}
+--- !u!54 &2110205798
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110205790}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2113490186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 97af63e2ae091c54db92acda3678e833, type: 3}
@@ -34491,7 +34518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139434042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34882,6 +34909,7 @@ GameObject:
   - component: {fileID: 1854550472756781339}
   - component: {fileID: 4492438062464472530}
   - component: {fileID: 4492438062464472531}
+  - component: {fileID: 4492438062464472532}
   m_Layer: 0
   m_Name: sacola2-plastico
   m_TagString: Lixo
@@ -35052,6 +35080,7 @@ GameObject:
   - component: {fileID: 2109540337575594508}
   - component: {fileID: 4225045552533733063}
   - component: {fileID: 4225045552533733064}
+  - component: {fileID: 4225045552533733065}
   m_Layer: 0
   m_Name: garrafa-vidro
   m_TagString: Lixo
@@ -35194,6 +35223,7 @@ GameObject:
   - component: {fileID: 2043502336787626551}
   - component: {fileID: 4305174910897540862}
   - component: {fileID: 4305174910897540863}
+  - component: {fileID: 4305174910897540864}
   m_Layer: 0
   m_Name: bottle2-plastico
   m_TagString: Lixo
@@ -36181,6 +36211,7 @@ GameObject:
   - component: {fileID: 1309895073143501071}
   - component: {fileID: 3875727811957245382}
   - component: {fileID: 3875727811957245383}
+  - component: {fileID: 3875727811957245384}
   m_Layer: 0
   m_Name: lata5-metal
   m_TagString: Lixo
@@ -36201,9 +36232,10 @@ GameObject:
   - component: {fileID: 1310064047521150778}
   - component: {fileID: 3876120464003875825}
   - component: {fileID: 3876120464003875826}
-  m_Layer: 0
+  - component: {fileID: 3876120464003875827}
+  m_Layer: 8
   m_Name: LixeiraVerde
-  m_TagString: Untagged
+  m_TagString: Lixeira
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36252,6 +36284,7 @@ GameObject:
   - component: {fileID: 1288419785230954461}
   - component: {fileID: 3892682096448527128}
   - component: {fileID: 3892682096448527129}
+  - component: {fileID: 3892682096448527130}
   m_Layer: 0
   m_Name: ovo5-papel
   m_TagString: Lixo
@@ -36337,6 +36370,7 @@ GameObject:
   - component: {fileID: 1662221349137928623}
   - component: {fileID: 3527887285695489382}
   - component: {fileID: 3527887285695489383}
+  - component: {fileID: 3527887285695489384}
   m_Layer: 0
   m_Name: lata4-metal
   m_TagString: Lixo
@@ -37587,7 +37621,7 @@ GameObject:
   - component: {fileID: 8416801087398861979}
   - component: {fileID: 431238056038191378}
   - component: {fileID: 7080939029657291670}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_duckHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37607,6 +37641,7 @@ GameObject:
   - component: {fileID: 1629736987449813753}
   - component: {fileID: 3564892048346717748}
   - component: {fileID: 3564892048346717749}
+  - component: {fileID: 3564892048346717750}
   m_Layer: 0
   m_Name: lataquebradaverde-metal
   m_TagString: Lixo
@@ -37665,7 +37700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6970903050554209804}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37750,6 +37785,7 @@ GameObject:
   - component: {fileID: 856999449717135847}
   - component: {fileID: 3170634453458922798}
   - component: {fileID: 3170634453458922799}
+  - component: {fileID: 3170634453458922800}
   m_Layer: 0
   m_Name: ovo8-papel
   m_TagString: Lixo
@@ -37973,6 +38009,7 @@ GameObject:
   - component: {fileID: 1026285064108228452}
   - component: {fileID: 3015986361932270511}
   - component: {fileID: 3015986361932270512}
+  - component: {fileID: 3015986361932270513}
   m_Layer: 0
   m_Name: lata-metal
   m_TagString: Lixo
@@ -38092,6 +38129,7 @@ GameObject:
   - component: {fileID: 984683746004429146}
   - component: {fileID: 3048580635273797009}
   - component: {fileID: 3048580635273797010}
+  - component: {fileID: 3048580635273797011}
   m_Layer: 0
   m_Name: bottle-plastico
   m_TagString: Lixo
@@ -40820,7 +40858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8754615725596958692}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40846,7 +40884,7 @@ GameObject:
   - component: {fileID: 8220433984756511960}
   - component: {fileID: 8566279044485723703}
   - component: {fileID: 7258125460423169880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrashBin1Lid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40866,6 +40904,7 @@ GameObject:
   - component: {fileID: 242074825095306523}
   - component: {fileID: 2646131467357137362}
   - component: {fileID: 2646131467357137363}
+  - component: {fileID: 2646131467357137364}
   m_Layer: 0
   m_Name: lataquebradaamarela-metal
   m_TagString: Lixo
@@ -40884,7 +40923,7 @@ GameObject:
   - component: {fileID: 8319804449361170645}
   - component: {fileID: 8611078550262862394}
   - component: {fileID: 7339514514014679893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrashBin1Lid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40971,6 +41010,7 @@ GameObject:
   - component: {fileID: 8088762549337511}
   - component: {fileID: 2880135413462993262}
   - component: {fileID: 2880135413462993263}
+  - component: {fileID: 2880135413462993264}
   m_Layer: 0
   m_Name: pizza3-papel
   m_TagString: Lixo
@@ -41098,6 +41138,7 @@ GameObject:
   - component: {fileID: 480119482516135508}
   - component: {fileID: 2399659293299092127}
   - component: {fileID: 2399659293299092128}
+  - component: {fileID: 2399659293299092129}
   m_Layer: 0
   m_Name: ovo11-papel
   m_TagString: Lixo
@@ -41133,6 +41174,7 @@ GameObject:
   - component: {fileID: 374801394737616362}
   - component: {fileID: 2510607980512731425}
   - component: {fileID: 2510607980512731426}
+  - component: {fileID: 2510607980512731427}
   m_Layer: 0
   m_Name: ovo3-papel
   m_TagString: Lixo
@@ -41151,7 +41193,7 @@ GameObject:
   - component: {fileID: 7601607129650464730}
   - component: {fileID: 5510536061175001405}
   - component: {fileID: 5775379876774795375}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_bearHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41182,7 +41224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9138846177228530042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41284,10 +41326,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &2399659293299092129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137316807905771393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &2486248819935224812
 Transform:
   m_ObjectHideFlags: 0
@@ -41374,10 +41429,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &2510607980512731427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176210114980590655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &2571970808863507140
 GameObject:
   m_ObjectHideFlags: 0
@@ -41387,7 +41455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5299541924854341374}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41489,10 +41557,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &2646131467357137364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755552512170097870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &2661390690950084080
 GameObject:
   m_ObjectHideFlags: 0
@@ -41506,6 +41587,7 @@ GameObject:
   - component: {fileID: 4607134914854507557}
   - component: {fileID: 4607134914854507558}
   - component: {fileID: 4607134914854507559}
+  - component: {fileID: 4607134914854507560}
   m_Layer: 0
   m_Name: ovo4-papel
   m_TagString: Lixo
@@ -41522,7 +41604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4324383280307972308}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41557,6 +41639,7 @@ GameObject:
   - component: {fileID: 4418816881737050330}
   - component: {fileID: 4418816881737050331}
   - component: {fileID: 4418816881737050332}
+  - component: {fileID: 4418816881737050333}
   m_Layer: 0
   m_Name: pizza4-papel
   m_TagString: Lixo
@@ -41615,7 +41698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7542443905471623170}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KayKit Animated Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41732,10 +41815,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &2880135413462993264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953507669134498930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &2970135748827341098
 GameObject:
   m_ObjectHideFlags: 0
@@ -41747,7 +41843,7 @@ GameObject:
   - component: {fileID: 8127322290184529021}
   - component: {fileID: 8984162809800428}
   - component: {fileID: 5971263042122670029}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_bearArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41808,9 +41904,10 @@ GameObject:
   - component: {fileID: 8385916865868003734}
   - component: {fileID: 8385916865868003736}
   - component: {fileID: 8385916865868003735}
-  m_Layer: 0
+  - component: {fileID: 8385916865868003737}
+  m_Layer: 3
   m_Name: POLAR
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41828,9 +41925,10 @@ GameObject:
   - component: {fileID: 3663667260857622519}
   - component: {fileID: 3663667260857622520}
   - component: {fileID: 3663667260857622521}
-  m_Layer: 0
+  - component: {fileID: 3663667260857622522}
+  m_Layer: 8
   m_Name: LixeiraVermelha
-  m_TagString: Untagged
+  m_TagString: Lixeira
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41888,10 +41986,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3015986361932270513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530912317365690033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &3048580635273797008
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -41945,10 +42056,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3048580635273797011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633312249489541263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!23 &3126740760502252524
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42044,10 +42168,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3170634453458922800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217185782972282930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!23 &3172419141617613323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42175,6 +42312,7 @@ GameObject:
   - component: {fileID: 3825588149954762550}
   - component: {fileID: 3825588149954762551}
   - component: {fileID: 3825588149954762552}
+  - component: {fileID: 3825588149954762553}
   m_Layer: 0
   m_Name: garrafa4-vidro
   m_TagString: Lixo
@@ -42354,9 +42492,10 @@ GameObject:
   - component: {fileID: 7900432017592799358}
   - component: {fileID: 7900432017592799360}
   - component: {fileID: 7900432017592799359}
-  m_Layer: 0
+  - component: {fileID: 7900432017592799361}
+  m_Layer: 3
   m_Name: PATO
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44234,7 +44373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3375863743589394351}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44254,6 +44393,7 @@ GameObject:
   - component: {fileID: 3126740760502252524}
   - component: {fileID: 4264705417644820612}
   - component: {fileID: 4264705417644820613}
+  - component: {fileID: 4264705417644820614}
   m_Layer: 0
   m_Name: latavermelha-metal
   m_TagString: Lixo
@@ -44314,10 +44454,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3527887285695489384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869645470601867386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &3553284354679696634
 Transform:
   m_ObjectHideFlags: 0
@@ -44386,10 +44539,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3564892048346717750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980941771052501804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &3643391143338708508
 GameObject:
   m_ObjectHideFlags: 0
@@ -44403,6 +44569,7 @@ GameObject:
   - component: {fileID: 2994630422558519241}
   - component: {fileID: 4162518323146413223}
   - component: {fileID: 4162518323146413224}
+  - component: {fileID: 4162518323146413225}
   m_Layer: 0
   m_Name: lata2-metal
   m_TagString: Lixo
@@ -44467,11 +44634,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43, y: 1.03, z: 0.52}
+  m_Size: {x: 0.55, y: 1.09, z: 0.55}
   m_Center: {x: 0.00000017881393, y: 0.52, z: -0.01}
 --- !u!114 &3663667260857622521
 MonoBehaviour:
@@ -44485,7 +44652,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fc4a371e22f104cb5b0d38ddb91a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wasteManager: {fileID: 1776035170}
+  wasteManager: {fileID: 0}
+  correctWasteType: 
+--- !u!54 &3663667260857622522
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014888947953843746}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &3665492072736337728
 Transform:
   m_ObjectHideFlags: 0
@@ -44514,6 +44709,7 @@ GameObject:
   - component: {fileID: 3391379858969179247}
   - component: {fileID: 4565443719860997889}
   - component: {fileID: 4565443719860997890}
+  - component: {fileID: 4565443719860997891}
   m_Layer: 0
   m_Name: pizza2-papel
   m_TagString: Lixo
@@ -44534,6 +44730,7 @@ GameObject:
   - component: {fileID: 3422003476583270118}
   - component: {fileID: 4554910350309997962}
   - component: {fileID: 4554910350309997963}
+  - component: {fileID: 4554910350309997964}
   m_Layer: 0
   m_Name: ovo2-papel
   m_TagString: Lixo
@@ -44628,10 +44825,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &3825588149954762553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321339130168800995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &3866750335851900766
 GameObject:
   m_ObjectHideFlags: 0
@@ -44645,6 +44855,7 @@ GameObject:
   - component: {fileID: 3362368687615807115}
   - component: {fileID: 4531364894714590693}
   - component: {fileID: 4531364894714590694}
+  - component: {fileID: 4531364894714590695}
   m_Layer: 0
   m_Name: garrafa5-vidro
   m_TagString: Lixo
@@ -44705,10 +44916,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3875727811957245384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661275776979505370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &3876120464003875824
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44732,11 +44956,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43, y: 1.03, z: 0.52}
+  m_Size: {x: 0.55, y: 1.09, z: 0.55}
   m_Center: {x: 0.00000017881393, y: 0.52, z: -0.01}
 --- !u!114 &3876120464003875826
 MonoBehaviour:
@@ -44750,7 +44974,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fc4a371e22f104cb5b0d38ddb91a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wasteManager: {fileID: 1776035170}
+  wasteManager: {fileID: 0}
+  correctWasteType: 
+--- !u!54 &3876120464003875827
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661664379542804207}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &3892682096448527127
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44804,10 +45056,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3892682096448527130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784082116335439368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &3899529675198690407
 Transform:
   m_ObjectHideFlags: 0
@@ -44846,6 +45111,7 @@ GameObject:
   - component: {fileID: 3291797339245937567}
   - component: {fileID: 4460249053209000177}
   - component: {fileID: 4460249053209000178}
+  - component: {fileID: 4460249053209000179}
   m_Layer: 0
   m_Name: garrafa3-vidro
   m_TagString: Lixo
@@ -44881,6 +45147,7 @@ GameObject:
   - component: {fileID: 3172419141617613323}
   - component: {fileID: 4345303737231442277}
   - component: {fileID: 4345303737231442278}
+  - component: {fileID: 4345303737231442279}
   m_Layer: 0
   m_Name: pizza-papel
   m_TagString: Lixo
@@ -44912,7 +45179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7426593943344482450}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44979,10 +45246,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4162518323146413225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643391143338708508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &4180499236243289664
 GameObject:
   m_ObjectHideFlags: 0
@@ -44996,6 +45276,7 @@ GameObject:
   - component: {fileID: 2379274545283274645}
   - component: {fileID: 4180499236243289665}
   - component: {fileID: 4180499236243289666}
+  - component: {fileID: 4180499236243289667}
   m_Layer: 0
   m_Name: ovo12-papel
   m_TagString: Lixo
@@ -45048,10 +45329,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4180499236243289667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4180499236243289664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &4211501344001026860
 GameObject:
   m_ObjectHideFlags: 0
@@ -45061,7 +45355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5785149385805575958}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45121,10 +45415,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &4225045552533733065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452167227700063193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4264705417644820611
 Transform:
   m_ObjectHideFlags: 0
@@ -45185,10 +45492,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4264705417644820614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487077316072772153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4270492009489238532
 Transform:
   m_ObjectHideFlags: 0
@@ -45215,7 +45535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3899529675198690407}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45275,10 +45595,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4305174910897540864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530025062012001250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4324383280307972308
 Transform:
   m_ObjectHideFlags: 0
@@ -45354,10 +45687,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4345303737231442279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964942380899752926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &4353489695415290634
 GameObject:
   m_ObjectHideFlags: 0
@@ -45369,7 +45715,7 @@ GameObject:
   - component: {fileID: 3972565625154113968}
   - component: {fileID: 40172814202969621}
   - component: {fileID: 2840170200427588319}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45463,10 +45809,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4418816881737050333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2761329973024262415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &4439864752541167540
 GameObject:
   m_ObjectHideFlags: 0
@@ -45480,6 +45839,7 @@ GameObject:
   - component: {fileID: 2782500026571673185}
   - component: {fileID: 4439864752541167541}
   - component: {fileID: 4439864752541167542}
+  - component: {fileID: 4439864752541167543}
   m_Layer: 0
   m_Name: ovo7-papel
   m_TagString: Lixo
@@ -45532,10 +45892,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4439864752541167543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4439864752541167540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4460249053209000176
 Transform:
   m_ObjectHideFlags: 0
@@ -45596,10 +45969,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &4460249053209000179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940135435115373130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &4492438062464472529
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -45653,10 +46039,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4492438062464472532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197124449485242574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4531364894714590692
 Transform:
   m_ObjectHideFlags: 0
@@ -45717,10 +46116,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &4531364894714590695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866750335851900766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4554910350309997961
 Transform:
   m_ObjectHideFlags: 0
@@ -45781,10 +46193,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4554910350309997964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782349103309678387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4565443719860997888
 Transform:
   m_ObjectHideFlags: 0
@@ -45845,10 +46270,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4565443719860997891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751611134896641466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!23 &4607134914854507557
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45936,10 +46374,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4607134914854507560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2661390690950084080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &4612991112868629802
 Transform:
   m_ObjectHideFlags: 0
@@ -45966,7 +46417,7 @@ GameObject:
   - component: {fileID: 1427830702720809075}
   - component: {fileID: 6606793671457983337}
   - component: {fileID: 507679446570034800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_bearArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45982,7 +46433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6469307630927520962}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46136,6 +46587,7 @@ GameObject:
   - component: {fileID: 6448113554205997179}
   - component: {fileID: 9122245918530505906}
   - component: {fileID: 9122245918530505907}
+  - component: {fileID: 9122245918530505908}
   m_Layer: 0
   m_Name: ovo9-papel
   m_TagString: Lixo
@@ -46176,7 +46628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 966293046620568596}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KayKit Animated Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46258,7 +46710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1952141665744006508}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46278,6 +46730,7 @@ GameObject:
   - component: {fileID: 6785980222732442573}
   - component: {fileID: 8775354338808426248}
   - component: {fileID: 8775354338808426249}
+  - component: {fileID: 8775354338808426250}
   m_Layer: 0
   m_Name: lataverde-metal
   m_TagString: Lixo
@@ -46324,7 +46777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3192792515039597288}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46364,7 +46817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5339581147007111577}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46384,9 +46837,10 @@ GameObject:
   - component: {fileID: 6018458098876057775}
   - component: {fileID: 8386032948549549158}
   - component: {fileID: 8386032948549549159}
-  m_Layer: 0
+  - component: {fileID: 8386032948549549160}
+  m_Layer: 8
   m_Name: LixeiraAmarela
-  m_TagString: Untagged
+  m_TagString: Lixeira
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46434,9 +46888,10 @@ GameObject:
   - component: {fileID: 5973146353956711586}
   - component: {fileID: 8430764615051417706}
   - component: {fileID: 8430764615051417707}
-  m_Layer: 0
+  - component: {fileID: 8430764615051417708}
+  m_Layer: 8
   m_Name: LixeiraAzul
-  m_TagString: Untagged
+  m_TagString: Lixeira
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46503,7 +46958,7 @@ GameObject:
   - component: {fileID: 2790612063038542366}
   - component: {fileID: 2079050448348386540}
   - component: {fileID: 1608627894564132937}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_duckArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46519,7 +46974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5971372227523805777}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46591,6 +47046,7 @@ GameObject:
   - component: {fileID: 6224827025919169490}
   - component: {fileID: 8180771659183630105}
   - component: {fileID: 8180771659183630106}
+  - component: {fileID: 8180771659183630107}
   m_Layer: 0
   m_Name: lataazul-metal
   m_TagString: Lixo
@@ -46619,6 +47075,7 @@ GameObject:
   - component: {fileID: 6126924396318311010}
   - component: {fileID: 8278673910693279401}
   - component: {fileID: 8278673910693279402}
+  - component: {fileID: 8278673910693279403}
   m_Layer: 0
   m_Name: bottlebroke2-plastico
   m_TagString: Lixo
@@ -46813,7 +47270,7 @@ GameObject:
   - component: {fileID: 6175198059863853072}
   - component: {fileID: 8733171665406012150}
   - component: {fileID: 5549327334810569772}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_dogHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47064,7 +47521,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5412667721404492729}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47082,7 +47539,7 @@ GameObject:
   - component: {fileID: 6837171534611401223}
   - component: {fileID: 7587818650898515362}
   - component: {fileID: 5668254662670889320}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_panda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47116,9 +47573,11 @@ GameObject:
   - component: {fileID: 605500653849042024}
   - component: {fileID: 6811421166730577428}
   - component: {fileID: 6811421166730577427}
-  m_Layer: 0
+  - component: {fileID: 6811421166730577430}
+  - component: {fileID: 6811421166730577429}
+  m_Layer: 3
   m_Name: CACHORRO
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47176,7 +47635,7 @@ GameObject:
   - component: {fileID: 3665492072736337728}
   - component: {fileID: 3903250743572950447}
   - component: {fileID: 2625776840966245568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrashBin1Lid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47192,7 +47651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612991112868629802}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: handSlotLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47252,7 +47711,7 @@ GameObject:
   - component: {fileID: 7342346330945625586}
   - component: {fileID: 8845994298556883068}
   - component: {fileID: 7903849769759510853}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_dogArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47303,6 +47762,7 @@ GameObject:
   - component: {fileID: 4692680616568731499}
   - component: {fileID: 7420585702936560546}
   - component: {fileID: 7420585702936560547}
+  - component: {fileID: 7420585702936560548}
   m_Layer: 0
   m_Name: lataamarela-metal
   m_TagString: Lixo
@@ -47323,6 +47783,7 @@ GameObject:
   - component: {fileID: 4701538256816671516}
   - component: {fileID: 7411745672743321559}
   - component: {fileID: 7411745672743321560}
+  - component: {fileID: 7411745672743321561}
   m_Layer: 0
   m_Name: bottlebroke-plastico
   m_TagString: Lixo
@@ -47343,6 +47804,7 @@ GameObject:
   - component: {fileID: 4718830669674608469}
   - component: {fileID: 7392746989630030752}
   - component: {fileID: 7392746989630030753}
+  - component: {fileID: 7392746989630030754}
   m_Layer: 0
   m_Name: lataquebradavermelha-metal
   m_TagString: Lixo
@@ -47359,7 +47821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1489510130034054652}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KayKit Animated Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47493,11 +47955,61 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 20
+  airRotationSpeed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   holdPoint: {fileID: 562506890}
+--- !u!136 &6811421166730577429
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182553723672059048}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.44
+  m_Height: 1.68
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.79, z: 0}
+--- !u!54 &6811421166730577430
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182553723672059048}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &6814700296322345362
 GameObject:
   m_ObjectHideFlags: 0
@@ -47507,7 +48019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6041925491127122033}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: armLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47542,6 +48054,7 @@ GameObject:
   - component: {fileID: 4926078703943414246}
   - component: {fileID: 7185498920967537965}
   - component: {fileID: 7185498920967537966}
+  - component: {fileID: 7185498920967537967}
   m_Layer: 0
   m_Name: caixa2-papel
   m_TagString: Lixo
@@ -47838,10 +48351,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &7185498920967537967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871382573520932915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &7202368043991184209
 GameObject:
   m_ObjectHideFlags: 0
@@ -47853,7 +48379,7 @@ GameObject:
   - component: {fileID: 5495504549415908212}
   - component: {fileID: 6952619741065276701}
   - component: {fileID: 8271250385162459465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_dogArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47987,6 +48513,7 @@ GameObject:
   - component: {fileID: 9092151163703682131}
   - component: {fileID: 9092151163703682132}
   - component: {fileID: 9092151163703682133}
+  - component: {fileID: 9092151163703682134}
   m_Layer: 0
   m_Name: caixa3-papel
   m_TagString: Lixo
@@ -48104,10 +48631,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &7392746989630030754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6520186476943365760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &7411745672743321558
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -48161,10 +48701,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &7411745672743321561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503132244651551433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &7413286687291557451
 GameObject:
   m_ObjectHideFlags: 0
@@ -48178,6 +48731,7 @@ GameObject:
   - component: {fileID: 9070729615484053406}
   - component: {fileID: 9070729615484053407}
   - component: {fileID: 9070729615484053408}
+  - component: {fileID: 9070729615484053409}
   m_Layer: 0
   m_Name: lata3-metal
   m_TagString: Lixo
@@ -48238,10 +48792,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &7420585702936560548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493975537896068798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &7426593943344482450
 Transform:
   m_ObjectHideFlags: 0
@@ -48435,7 +49002,7 @@ GameObject:
   - component: {fileID: 6736729010210068206}
   - component: {fileID: 4697639994468735792}
   - component: {fileID: 1646189480871890763}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_duckArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48451,7 +49018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 394431968604191258}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48524,11 +49091,38 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 20
+  airRotationSpeed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   holdPoint: {fileID: 0}
+--- !u!54 &7900432017592799361
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461022325840826558}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &7902296010176929009
 Transform:
   m_ObjectHideFlags: 0
@@ -48614,6 +49208,7 @@ GameObject:
   - component: {fileID: 8378187374722467784}
   - component: {fileID: 8378187374722467785}
   - component: {fileID: 8378187374722467786}
+  - component: {fileID: 8378187374722467787}
   m_Layer: 0
   m_Name: garrafa2-vidro
   m_TagString: Lixo
@@ -48634,6 +49229,7 @@ GameObject:
   - component: {fileID: 8392828987977548815}
   - component: {fileID: 8392828987977548816}
   - component: {fileID: 8392828987977548817}
+  - component: {fileID: 8392828987977548818}
   m_Layer: 0
   m_Name: ovo-papel
   m_TagString: Lixo
@@ -48699,6 +49295,7 @@ GameObject:
   - component: {fileID: 7651646213540330094}
   - component: {fileID: 8825708832917766402}
   - component: {fileID: 8825708832917766403}
+  - component: {fileID: 8825708832917766404}
   m_Layer: 0
   m_Name: caixa-papel
   m_TagString: Lixo
@@ -48759,10 +49356,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8180771659183630107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576577029375422983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &8203129836827975225
 Transform:
   m_ObjectHideFlags: 0
@@ -48806,6 +49416,7 @@ GameObject:
   - component: {fileID: 7592391383362505773}
   - component: {fileID: 8725367349153167171}
   - component: {fileID: 8725367349153167172}
+  - component: {fileID: 8725367349153167173}
   m_Layer: 0
   m_Name: lataquebradaazul-metal
   m_TagString: Lixo
@@ -48908,10 +49519,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8278673910693279403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622683897429353399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &8306321097175969999
 Transform:
   m_ObjectHideFlags: 0
@@ -48953,7 +49577,7 @@ GameObject:
   - component: {fileID: 8701733491066377730}
   - component: {fileID: 5723264876096166311}
   - component: {fileID: 7532807338105662829}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: character_dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49047,10 +49671,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &8378187374722467787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018009837022570013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!95 &8385916865868003734
 Animator:
   serializedVersion: 5
@@ -49117,11 +49754,38 @@ MonoBehaviour:
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
-  airRotationSpeed: 20
+  airRotationSpeed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   holdPoint: {fileID: 0}
+--- !u!54 &8385916865868003737
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011569553785846102}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!33 &8386032948549549157
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -49145,11 +49809,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43, y: 1.03, z: 0.52}
+  m_Size: {x: 0.55, y: 1.09, z: 0.55}
   m_Center: {x: 0.00000017881393, y: 0.52, z: -0.01}
 --- !u!114 &8386032948549549159
 MonoBehaviour:
@@ -49163,7 +49827,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fc4a371e22f104cb5b0d38ddb91a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wasteManager: {fileID: 1776035170}
+  wasteManager: {fileID: 0}
+  correctWasteType: 
+--- !u!54 &8386032948549549160
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225626582751324538}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &8392828987977548815
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49251,10 +49943,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8392828987977548818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032641692201870810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &8406468953211695715
 Transform:
   m_ObjectHideFlags: 0
@@ -49308,11 +50013,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43, y: 1.03, z: 0.52}
+  m_Size: {x: 0.55, y: 1.09, z: 0.55}
   m_Center: {x: 0.00000017881393, y: 0.52, z: -0.01}
 --- !u!114 &8430764615051417707
 MonoBehaviour:
@@ -49326,7 +50031,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fc4a371e22f104cb5b0d38ddb91a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wasteManager: {fileID: 1776035170}
+  wasteManager: {fileID: 0}
+  correctWasteType: 
+--- !u!54 &8430764615051417708
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5324412021539458423}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &8566279044485723703
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -49356,6 +50089,7 @@ GameObject:
   - component: {fileID: 7137879798778317728}
   - component: {fileID: 8650899951577066102}
   - component: {fileID: 8650899951577066103}
+  - component: {fileID: 8650899951577066104}
   m_Layer: 0
   m_Name: ovo6-papel
   m_TagString: Lixo
@@ -49408,10 +50142,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8650899951577066104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650899951577066101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &8658695468453875910
 GameObject:
   m_ObjectHideFlags: 0
@@ -49423,7 +50170,7 @@ GameObject:
   - component: {fileID: 1308238686954063757}
   - component: {fileID: 1644548783978464610}
   - component: {fileID: 326827249713685517}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrashBin1Lid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49505,10 +50252,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8725367349153167173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240861419753483768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &8733171665406012150
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -49586,10 +50346,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8775354338808426250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984457290165041688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &8825708832917766401
 Transform:
   m_ObjectHideFlags: 0
@@ -49650,10 +50423,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8825708832917766404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156273740739976123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &8835094569973073027
 GameObject:
   m_ObjectHideFlags: 0
@@ -49667,6 +50453,7 @@ GameObject:
   - component: {fileID: 7033624000720135510}
   - component: {fileID: 8835094569973073028}
   - component: {fileID: 8835094569973073029}
+  - component: {fileID: 8835094569973073030}
   m_Layer: 0
   m_Name: garrafa6-vidro
   m_TagString: Lixo
@@ -49719,10 +50506,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &8835094569973073030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835094569973073027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &8845994298556883068
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -49744,6 +50544,7 @@ GameObject:
   - component: {fileID: 6964705476272867923}
   - component: {fileID: 8910203409049185159}
   - component: {fileID: 8910203409049185160}
+  - component: {fileID: 8910203409049185161}
   m_Layer: 0
   m_Name: sacola-plastico
   m_TagString: Lixo
@@ -49796,10 +50597,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8910203409049185161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8910203409049185158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1 &8930235964679361882
 GameObject:
   m_ObjectHideFlags: 0
@@ -49813,6 +50627,7 @@ GameObject:
   - component: {fileID: 6984641274289468559}
   - component: {fileID: 8930235964679361883}
   - component: {fileID: 8930235964679361884}
+  - component: {fileID: 8930235964679361885}
   m_Layer: 0
   m_Name: ovo10-papel
   m_TagString: Lixo
@@ -49865,10 +50680,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8930235964679361885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930235964679361882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!23 &9070729615484053406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49956,10 +50784,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &9070729615484053409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7413286687291557451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!23 &9092151163703682131
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50047,10 +50888,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &9092151163703682134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290539719909819782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!33 &9122245918530505905
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -50104,10 +50958,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &9122245918530505908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4790899185786018222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!4 &9138846177228530042
 Transform:
   m_ObjectHideFlags: 0
@@ -50138,6 +51005,7 @@ GameObject:
   - component: {fileID: 7269630195707382028}
   - component: {fileID: 9214952344586299610}
   - component: {fileID: 9214952344586299611}
+  - component: {fileID: 9214952344586299612}
   m_Layer: 0
   m_Name: jarra-vidro
   m_TagString: Lixo
@@ -50190,10 +51058,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 52
   m_CollisionDetection: 0
+--- !u!114 &9214952344586299612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214952344586299609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4b3ebced9ea84eaf3771c82a45a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasteID: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

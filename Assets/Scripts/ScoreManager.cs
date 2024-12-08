@@ -2,28 +2,16 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int[] playerScores = new int[4]; // Suporte para 4 jogadores
+    private int[] scores = new int[4];
 
     public void AddPoints(int playerNumber, int points)
     {
-        if (playerNumber > 0 && playerNumber <= playerScores.Length)
-        {
-            playerScores[playerNumber - 1] += points;
-            Debug.Log($"Jogador {playerNumber} marcou {points} ponto(s)! Total: {playerScores[playerNumber - 1]} ponto(s).");
-        }
-        else
-        {
-            Debug.LogError("Número do jogador inválido.");
-        }
+        scores[playerNumber - 1] += points;
+        Debug.Log($"Jogador {playerNumber} agora tem {scores[playerNumber - 1]} ponto(s).");
     }
 
     public int GetPlayerScore(int playerNumber)
     {
-        if (playerNumber > 0 && playerNumber <= playerScores.Length)
-        {
-            return playerScores[playerNumber - 1];
-        }
-        Debug.LogError("Número do jogador inválido.");
-        return 0;
+        return scores[playerNumber - 1];
     }
 }

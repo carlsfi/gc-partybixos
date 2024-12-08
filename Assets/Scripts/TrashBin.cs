@@ -2,27 +2,39 @@ using UnityEngine;
 
 public class TrashBin : MonoBehaviour
 {
-    public WasteManager wasteManager;
+    public WasteManager wasteManager; // Referência ao WasteManager para verificar o lixo
+    public string correctWasteType; // Tipo correto de lixo para esta lixeira (ex.: "vidro", "plastico")
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Lixo"))
+        // Verifica se o jogador colidiu
+        PlayerController player = collision.collider.GetComponent<PlayerController>();
+        if (player != null)
         {
-            GameObject waste = other.gameObject;
+            Debug.Log($"Jogador {player.playerNumber} colidiu com a lixeira: {gameObject.name}");
 
-            // Verifica o jogador segurando o lixo
-            PlayerController[] players = FindObjectsOfType<PlayerController>();
-            foreach (var player in players)
+            // Verifica se o jogador está segurando lixo
+            GameObject heldWaste = player.GetHeldWaste();
+            if (heldWaste != null)
             {
-                if (player.GetHeldWaste() == waste)
+                // Verifica se o lixo é do tipo correto
+                string wasteType = wasteManager.GetWasteType(heldWaste);
+                if (wasteType == correctWasteType)
                 {
-                    wasteManager.DepositWaste(waste, transform, player.playerNumber);
+                    Debug.Log($"Lixo {heldWaste.name} depositado CORRETAMENTE na lixeira {gameObject.name}.");
+                    wasteManager.DepositWaste(heldWaste, transform, player.playerNumber);
                     player.DropHeldWaste();
-                    return;
+                }
+                else
+                {
+                    Debug.Log($"Lixo {heldWaste.name} foi colocado na lixeira ERRADA ({gameObject.name}).");
+                    player.DropHeldWaste(); // Opcional: solta o lixo mesmo sendo incorreto
                 }
             }
-
-            Debug.LogWarning("Lixo detectado, mas não foi possível identificar o jogador.");
+            else
+            {
+                Debug.Log($"Jogador {player.playerNumber} não está segurando nenhum lixo.");
+            }
         }
     }
 }

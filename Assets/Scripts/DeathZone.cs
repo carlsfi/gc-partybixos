@@ -48,10 +48,27 @@ public class DeathZone : MonoBehaviour
             {
                 string playerName = player.name;
                 Vector3 respawnPosition = GetRespawnPosition(playerName);
+
+                // Verifica e desativa o CharacterController antes de modificar a posição
+                CharacterController characterController = player.GetComponent<CharacterController>();
+                if (characterController != null)
+                {
+                    characterController.enabled = false;
+                }
+
+                // Atualiza a posição do jogador
                 player.transform.position = respawnPosition;
-                //Debug.Log($"Respawnando jogador {playerName} na posição {respawnPosition}.");
+
+                // Reativa o CharacterController
+                if (characterController != null)
+                {
+                    characterController.enabled = true;
+                }
+
+                Debug.Log($"Respawnando jogador {playerName} na posição {respawnPosition}.");
             }
         }
         playersInDeathZone.Clear();
     }
+
 }
