@@ -152,21 +152,60 @@ public class TurnManager : MonoBehaviour
     }
 
     private void SaveGameState()
+{
+    for (int i = 0; i < players.Count; i++)
     {
-        for (int i = 0; i < players.Count; i++)
+        PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+        GameData.playerPositions[i] = movement.currentWaypointIndex;
+
+        // Salva o sprite do jogador
+        Player playerData = players[i].GetComponent<Player>();
+        if (GameData.playerSprites.Count <= i)
         {
-            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
-            GameData.playerPositions[i] = movement.currentWaypointIndex;
+            GameData.playerSprites.Add(playerData.playerSprite);
+        }
+        else
+        {
+            GameData.playerSprites[i] = playerData.playerSprite;
         }
     }
 
+    GameData.isHUDVisible = true;
+}
+
+
+
     private void RestoreGameState()
+{
+    for (int i = 0; i < players.Count; i++)
     {
-        for (int i = 0; i < players.Count; i++)
+        PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+        movement.currentWaypointIndex = GameData.playerPositions[i];
+        movement.transform.position = movement.waypoints[movement.currentWaypointIndex].position;
+
+        // Restaura o sprite do jogador
+        Player playerData = players[i].GetComponent<Player>();
+        if (i < GameData.playerSprites.Count)
         {
-            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
-            movement.currentWaypointIndex = GameData.playerPositions[i];
-            movement.transform.position = movement.waypoints[movement.currentWaypointIndex].position;
+            playerData.playerSprite = GameData.playerSprites[i];
         }
     }
+
+    // Atualiza as pontuações no HUD
+    var hudManager = FindObjectOfType<HUDManager>();
+    for (int i = 0; i < GameData.playerScores.Count; i++)
+    {
+        string playerName = players[i].name;
+        int playerScore = GameData.playerScores[i];
+        hudManager.UpdateScore(playerName, playerScore); // Atualiza o ScoreText do HUD
+    }
+
+    if (GameData.isHUDVisible && turnOrder.Count > 0)
+    {
+        hudManager.UpdateHUD(turnOrder);
+    }
+}
+
+
+    
 }
