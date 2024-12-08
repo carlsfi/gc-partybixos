@@ -272,11 +272,20 @@ public class RoundManager : MonoBehaviour
         if (playerScore >= winningScore)
         {
             Debug.Log($"Jogador {playerName} venceu o minigame com {playerScore} pontos!");
+
+            // Atualiza o índice do vencedor no GameData
+            int playerIndex = hudManager.GetPlayerNames().IndexOf(playerName);
+            GameData.lastMinigameWinner = playerIndex;
+
+            // Incrementa a pontuação no GameData
+            GameData.playerScores[playerIndex] += 1;
+
             EndMinigame();
             return;
         }
     }
 }
+
 
     void EndMinigame()
     {

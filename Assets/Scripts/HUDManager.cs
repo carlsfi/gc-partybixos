@@ -23,15 +23,15 @@ public class HUDManager : MonoBehaviour
 
     private void Start()
     {
-        // Certifique-se de atualizar o HUD após a ordem ser definida
         if (turnManager != null)
         {
             turnManager.OnTurnOrderDefined += UpdateHUD;
         }
 
-        // Esconde o HUD no início
-        SetHUDVisibility(false);
+        // Configura o HUD com base no estado persistente
+        SetHUDVisibility(GameData.isHUDVisible);
     }
+
 
     private void OnDestroy()
     {
@@ -43,24 +43,34 @@ public class HUDManager : MonoBehaviour
     }
 
     public void UpdateHUD(List<GameObject> turnOrder)
+{
+    for (int i = 0; i < playerImages.Count; i++)
     {
-        for (int i = 0; i < playerImages.Count; i++)
+        if (i < turnOrder.Count)
         {
-            if (i < turnOrder.Count)
+            Player playerData = turnOrder[i].GetComponent<Player>();
+            
+            if (playerData.playerSprite != null)
             {
-                Player playerData = turnOrder[i].GetComponent<Player>();
-                playerImages[i].sprite = playerData.playerSprite; // Atualiza o sprite do jogador
-                playerImages[i].gameObject.SetActive(true); // Certifique-se de que está ativo
+                Debug.Log($"Setting sprite for player {playerData.name}");
+                playerImages[i].sprite = playerData.playerSprite;
+                playerImages[i].gameObject.SetActive(true);
             }
             else
             {
-                playerImages[i].gameObject.SetActive(false); // Esconde imagens extras
+                Debug.LogWarning($"Player {playerData.name} has no sprite set!");
             }
         }
-
-        // Mostra o HUD após atualizar a ordem
-        SetHUDVisibility(true);
+        else
+        {
+            playerImages[i].gameObject.SetActive(false);
+        }
     }
+
+    SetHUDVisibility(true);
+}
+
+
 
     private void SetHUDVisibility(bool isVisible)
     {
