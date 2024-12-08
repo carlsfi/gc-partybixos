@@ -4981,6 +4981,7 @@ GameObject:
   - component: {fileID: 760868085}
   - component: {fileID: 760868084}
   - component: {fileID: 760868083}
+  - component: {fileID: 760868088}
   m_Layer: 3
   m_Name: CACHORRO
   m_TagString: Player
@@ -5051,8 +5052,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  moveSpeed: 35
-  airMoveSpeed: 2
+  moveSpeed: 20
+  airMoveSpeed: 15
   jumpForce: 15
   gravity: 35
   deadzone: 0.2
@@ -5099,6 +5100,32 @@ Transform:
   - {fileID: 1893266693}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &760868088
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760868082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.6
+  m_Radius: 0.38
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1 &767339359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5467,6 +5494,7 @@ GameObject:
   - component: {fileID: 912596102}
   - component: {fileID: 912596101}
   - component: {fileID: 912596100}
+  - component: {fileID: 912596105}
   m_Layer: 3
   m_Name: POLAR
   m_TagString: Player
@@ -5537,8 +5565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 3
-  moveSpeed: 35
-  airMoveSpeed: 2
+  moveSpeed: 20
+  airMoveSpeed: 15
   jumpForce: 15
   gravity: 35
   deadzone: 0.2
@@ -5585,6 +5613,32 @@ Transform:
   - {fileID: 1404660861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &912596105
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912596099}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.6
+  m_Radius: 0.38
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1 &918840487
 GameObject:
   m_ObjectHideFlags: 0
@@ -8248,6 +8302,7 @@ GameObject:
   - component: {fileID: 1320370720}
   - component: {fileID: 1320370719}
   - component: {fileID: 1320370718}
+  - component: {fileID: 1320370723}
   m_Layer: 3
   m_Name: URSO
   m_TagString: Player
@@ -8318,8 +8373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 4
-  moveSpeed: 35
-  airMoveSpeed: 2
+  moveSpeed: 20
+  airMoveSpeed: 15
   jumpForce: 15
   gravity: 35
   deadzone: 0.2
@@ -8366,6 +8421,32 @@ Transform:
   - {fileID: 1267751661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1320370723
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320370717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.6
+  m_Radius: 0.38
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1 &1330370471
 GameObject:
   m_ObjectHideFlags: 0
@@ -11117,6 +11198,7 @@ GameObject:
   - component: {fileID: 1725725378}
   - component: {fileID: 1725725377}
   - component: {fileID: 1725725376}
+  - component: {fileID: 1725725381}
   m_Layer: 3
   m_Name: PATO
   m_TagString: Player
@@ -11187,8 +11269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
-  moveSpeed: 35
-  airMoveSpeed: 2
+  moveSpeed: 20
+  airMoveSpeed: 15
   jumpForce: 15
   gravity: 35
   deadzone: 0.2
@@ -11235,6 +11317,32 @@ Transform:
   - {fileID: 1964241537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1725725381
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725725375}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.6
+  m_Radius: 0.38
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1 &1808502979
 GameObject:
   m_ObjectHideFlags: 0
