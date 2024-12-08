@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hexagon
   - Ground
+  - Lixo
   layers:
   - Default
   - TransparentFX
