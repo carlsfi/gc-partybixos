@@ -50,38 +50,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         CheckGrounded();
-
-        float moveHorizontal = Input.GetAxis(horizontalAxis);
-        float moveVertical = -Input.GetAxis(verticalAxis);
-
-        if (Mathf.Abs(moveHorizontal) < deadzone) moveHorizontal = 0;
-        if (Mathf.Abs(moveVertical) < deadzone) moveVertical = 0;
-
-        movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
-
-        float currentMoveSpeed = isGrounded ? moveSpeed : airMoveSpeed;
-        float currentRotationSpeed = isGrounded ? rotationSpeed : airRotationSpeed;
-
-        if (movement.magnitude > 0.1f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, currentRotationSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetButtonDown(jumpButton) && isGrounded)
-        {
-            Jump();
-        }
-
-        if (!isGrounded)
-        {
-            velocity.y -= gravity * Time.deltaTime;
-        }
-
-        characterController.Move((movement * currentMoveSpeed + velocity) * Time.deltaTime);
-
+        HandleMovement();
         HandleWastePickup();
-
         UpdateAnimations();
     }
 
@@ -91,18 +61,39 @@ public class PlayerController : MonoBehaviour
 
         if (!isGrounded)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.2f, groundLayer))
-            {
-                isGrounded = true;
-                velocity.y = -2f;
-            }
+            velocity.y -= gravity * Time.deltaTime;
         }
 
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
+    }
+
+    private void HandleMovement()
+    {
+        float moveHorizontal = Input.GetAxis(horizontalAxis);
+        float moveVertical = -Input.GetAxis(verticalAxis);
+
+        if (Mathf.Abs(moveHorizontal) < deadzone) moveHorizontal = 0;
+        if (Mathf.Abs(moveVertical) < deadzone) moveVertical = 0;
+
+        movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+
+        float currentMoveSpeed = isGrounded ? moveSpeed : airMoveSpeed;
+
+        if (movement.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetButtonDown(jumpButton) && isGrounded)
+        {
+            Jump();
+        }
+
+        characterController.Move((movement * currentMoveSpeed + velocity) * Time.deltaTime);
     }
 
     private void Jump()
@@ -150,6 +141,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Lixeira"))
+        {
+            Debug.Log($"Jogador {playerNumber} colidiu com a lixeira: {collision.gameObject.name}");
+
+            if (heldWaste != null)
+            {
+                Debug.Log($"Jogador {playerNumber} entregou o lixo: {heldWaste.name}");
+
+                if (wasteManager != null)
+                {
+                    wasteManager.DepositWaste(heldWaste, collision.transform, playerNumber);
+                    DropHeldWaste(); // Solta o lixo
+                }
+                else
+                {
+                    Debug.LogError("WasteManager não está configurado no PlayerController.");
+                }
+            }
+            else
+            {
+                Debug.Log($"Jogador {playerNumber} não está segurando nenhum lixo.");
+            }
+        }
+    }
+
     private void UpdateAnimations()
     {
         if (animator != null)
@@ -159,40 +177,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.collider.gameObject.name == "Bola")
-        {
-            Rigidbody ballRigidbody = hit.collider.attachedRigidbody;
-
-            if (ballRigidbody != null && !ballRigidbody.isKinematic)
-            {
-                Vector3 forceDirection = hit.point - transform.position;
-                forceDirection.y = 0;
-                forceDirection.Normalize();
-
-                ballRigidbody.AddForce(forceDirection * 10f, ForceMode.Impulse);
-            }
-        }
-    }
-
-    // --- Novos Métodos Adicionados ---
     public GameObject GetHeldWaste()
     {
         return heldWaste;
-    }
-
-    public bool HasWaste()
-    {
-        return heldWaste != null;
     }
 
     public void DropHeldWaste()
     {
         if (heldWaste != null)
         {
-            Destroy(heldWaste);
+            heldWaste.transform.SetParent(null);
+            heldWaste.GetComponent<Collider>().enabled = true;
             heldWaste = null;
+
+            Debug.Log($"Jogador {playerNumber} soltou o lixo.");
         }
     }
 }
