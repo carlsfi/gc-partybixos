@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tabuleiro.unity
     guid: e4382606bfe6aca498ad435c2e246621
+  - enabled: 1
+    path: Assets/Scenes/QuizSky(MG).unity
+    guid: 0aab55834dedba143b6cb67ef1c021f1
+  - enabled: 1
+    path: Assets/Scenes/CataLixo(MG).unity
+    guid: a80a8b4dd9bacd9478f870dbe8b79b84
   m_configObjects: {}

@@ -5,16 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hexagon
+  - Ground
+  - Lixo
+  - Lixeira
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Object
+  - Ground
+  - Lixeiras
   - 
   - 
   - 
