@@ -61,9 +61,10 @@ public class HotPotatoGameManager : MonoBehaviour
             isPlayerActive[player] = true; // Marca todos os jogadores como ativos
         }
 
-        ShowRoundMessage(); // Mostra mensagem do primeiro round
-        ChooseRandomHotPlayer();
+        ChooseRandomHotPlayer(); // Escolhe o jogador inicial
+        StartCoroutine(DisplayRoundMessage()); // Mostra a mensagem do Round 1 com o jogador inicial
     }
+
 
     private void ChooseRandomHotPlayer()
     {
@@ -234,4 +235,20 @@ public class HotPotatoGameManager : MonoBehaviour
 
         isPlayerActive[player] = true; // Torna o jogador ativo novamente
     }
+    private IEnumerator DisplayRoundMessage()
+    {
+        if (messagePotato != null)
+        {
+            // Mostra o início do Round 1
+            messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
+            yield return new WaitForSeconds(1f); // Aguarda a exibição da primeira mensagem
+
+            // Mostra o jogador inicial
+            if (currentHotPlayer != null)
+            {
+                messagePotato.ShowMessage($"Jogador inicial: {currentHotPlayer.name}");
+            }
+        }
+    }
+
 }
