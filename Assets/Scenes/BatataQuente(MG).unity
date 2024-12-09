@@ -968,9 +968,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 3
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
+  moveSpeed: 7
+  airMoveSpeed: 6
+  jumpForce: 12
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
@@ -6745,7 +6745,7 @@ MonoBehaviour:
   totalRounds: 10
   initialRoundTime: 25
   timeReductionPerRound: 5
-  proximityRadius: 2
+  proximityRadius: 1
   defeatDuration: 1
   messagePotato: {fileID: 1958157924}
 --- !u!4 &976286051
@@ -8531,9 +8531,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
+  moveSpeed: 7
+  airMoveSpeed: 6
+  jumpForce: 12
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
@@ -13825,9 +13825,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
+  moveSpeed: 7
+  airMoveSpeed: 6
+  jumpForce: 12
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
@@ -14073,9 +14073,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 4
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
+  moveSpeed: 7
+  airMoveSpeed: 6
+  jumpForce: 12
   gravity: 40
   deadzone: 0.2
   rotationSpeed: 10
