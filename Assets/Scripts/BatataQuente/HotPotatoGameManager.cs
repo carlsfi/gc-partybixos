@@ -22,6 +22,7 @@ public class HotPotatoGameManager : MonoBehaviour
 
     private void Start()
     {
+        ResetOutlines();
         InitializeGame();
     }
 
@@ -338,11 +339,24 @@ public class HotPotatoGameManager : MonoBehaviour
     }
 
     private void ShowRoundMessage()
-{
-    if (messagePotato != null)
     {
-        messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
+        if (messagePotato != null)
+        {
+            messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
+        }
     }
-}
+
+    private void ResetOutlines()
+    {
+        foreach (var player in players)
+        {
+            Outline outline = player.GetComponent<Outline>();
+            if (outline != null)
+            {
+                outline.enabled = false; // Reseta o estado
+            }
+        }
+    }
+
 
 }
