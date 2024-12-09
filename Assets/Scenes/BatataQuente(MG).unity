@@ -852,9 +852,9 @@ GameObject:
   m_Component:
   - component: {fileID: 84599390}
   - component: {fileID: 84599394}
-  - component: {fileID: 84599393}
   - component: {fileID: 84599392}
   - component: {fileID: 84599391}
+  - component: {fileID: 84599395}
   m_Layer: 3
   m_Name: POLAR
   m_TagString: Player
@@ -932,30 +932,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.79, z: 0}
---- !u!114 &84599393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84599389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb51bcabab383bb41936e0d497b8cbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNumber: 3
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
-  gravity: 40
-  deadzone: 0.2
-  rotationSpeed: 10
-  airRotationSpeed: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  holdPoint: {fileID: 0}
 --- !u!95 &84599394
 Animator:
   serializedVersion: 5
@@ -977,6 +953,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &84599395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84599389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c705e61441ad5714591f9bcb8d9652b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 3
+  moveSpeed: 8
+  airMoveSpeed: 8
+  jumpForce: 15
+  gravity: 40
+  deadzone: 0.2
+  rotationSpeed: 10
+  airRotationSpeed: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  holdPoint: {fileID: 0}
 --- !u!1001 &107712885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8143,10 +8143,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1264936342}
   - component: {fileID: 1264936346}
-  - component: {fileID: 1264936345}
   - component: {fileID: 1264936344}
   - component: {fileID: 1264936343}
   - component: {fileID: 1264936347}
+  - component: {fileID: 1264936348}
   m_Layer: 3
   m_Name: PATO
   m_TagString: Player
@@ -8224,30 +8224,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.79, z: 0}
---- !u!114 &1264936345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1264936341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb51bcabab383bb41936e0d497b8cbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNumber: 2
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
-  gravity: 40
-  deadzone: 0.2
-  rotationSpeed: 10
-  airRotationSpeed: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  holdPoint: {fileID: 0}
 --- !u!95 &1264936346
 Animator:
   serializedVersion: 5
@@ -8292,6 +8268,30 @@ CapsuleCollider:
   m_Height: 1.68
   m_Direction: 1
   m_Center: {x: 0, y: 0.79, z: 0}
+--- !u!114 &1264936348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264936341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c705e61441ad5714591f9bcb8d9652b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 2
+  moveSpeed: 8
+  airMoveSpeed: 8
+  jumpForce: 15
+  gravity: 40
+  deadzone: 0.2
+  rotationSpeed: 10
+  airRotationSpeed: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  holdPoint: {fileID: 0}
 --- !u!1001 &1267209773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13454,10 +13454,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2114265756}
   - component: {fileID: 2114265761}
-  - component: {fileID: 2114265760}
   - component: {fileID: 2114265759}
   - component: {fileID: 2114265758}
   - component: {fileID: 2114265757}
+  - component: {fileID: 2114265762}
   m_Layer: 3
   m_Name: CACHORRO
   m_TagString: Player
@@ -13558,30 +13558,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.79, z: 0}
---- !u!114 &2114265760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114265755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb51bcabab383bb41936e0d497b8cbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNumber: 1
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
-  gravity: 40
-  deadzone: 0.2
-  rotationSpeed: 10
-  airRotationSpeed: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  holdPoint: {fileID: 1897953858}
 --- !u!95 &2114265761
 Animator:
   serializedVersion: 5
@@ -13603,6 +13579,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2114265762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114265755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c705e61441ad5714591f9bcb8d9652b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 1
+  moveSpeed: 8
+  airMoveSpeed: 8
+  jumpForce: 15
+  gravity: 40
+  deadzone: 0.2
+  rotationSpeed: 10
+  airRotationSpeed: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  holdPoint: {fileID: 0}
 --- !u!4 &2114867667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 536412322860808765, guid: f7ff35a5deb7e914fabf51eee4e649a6, type: 3}
@@ -13684,10 +13684,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2134182208}
   - component: {fileID: 2134182212}
-  - component: {fileID: 2134182211}
   - component: {fileID: 2134182210}
   - component: {fileID: 2134182209}
   - component: {fileID: 2134182213}
+  - component: {fileID: 2134182214}
   m_Layer: 3
   m_Name: URSO
   m_TagString: Player
@@ -13765,30 +13765,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.79, z: 0}
---- !u!114 &2134182211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134182207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb51bcabab383bb41936e0d497b8cbc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNumber: 4
-  moveSpeed: 8
-  airMoveSpeed: 8
-  jumpForce: 15
-  gravity: 40
-  deadzone: 0.2
-  rotationSpeed: 10
-  airRotationSpeed: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  holdPoint: {fileID: 0}
 --- !u!95 &2134182212
 Animator:
   serializedVersion: 5
@@ -13833,6 +13809,30 @@ CapsuleCollider:
   m_Height: 1.68
   m_Direction: 1
   m_Center: {x: 0, y: 0.79, z: 0}
+--- !u!114 &2134182214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134182207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c705e61441ad5714591f9bcb8d9652b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 4
+  moveSpeed: 8
+  airMoveSpeed: 8
+  jumpForce: 15
+  gravity: 40
+  deadzone: 0.2
+  rotationSpeed: 10
+  airRotationSpeed: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  holdPoint: {fileID: 0}
 --- !u!1 &2134686198
 GameObject:
   m_ObjectHideFlags: 0
