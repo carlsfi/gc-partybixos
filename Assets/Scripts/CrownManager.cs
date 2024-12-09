@@ -25,7 +25,7 @@ public class CrownManager : MonoBehaviour
 
     void Awake()
     {
-        // Inicializa os campos estáticos com os objetos configurados no Inspector
+        // Inicializa os campos estï¿½ticos com os objetos configurados no Inspector
         crownValuePlayerOne = crownOne;
         crownValuePlayerTwo = crownTwo;
         crownValuePlayerThree = crownThree;
@@ -39,7 +39,7 @@ public class CrownManager : MonoBehaviour
     {
         if (playerIndex < 0 || playerIndex >= crownsList.Count)
         {
-            Debug.LogError($"Índice do jogador {playerIndex} está fora do intervalo.");
+            Debug.LogError($"Ãndice do jogador {playerIndex} estÃ¡ fora do intervalo.");
             return;
         }
 
@@ -61,7 +61,7 @@ public class CrownManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Jogador com índice {playerIndex} não encontrado para atualização.");
+            Debug.LogWarning($"Jogador com Ã­ndice {playerIndex} nÃ£o encontrado para atualizaÃ§Ã£o.");
         }
     }
 
@@ -76,7 +76,7 @@ public class CrownManager : MonoBehaviour
 
     private static TextMeshProUGUI GetCrownByIndex(int index)
     {
-        // Retorna o TextMeshProUGUI correspondente ao índice
+        // Retorna o TextMeshProUGUI correspondente ao ï¿½ndice
         return index switch
         {
             0 => crownValuePlayerOne,
