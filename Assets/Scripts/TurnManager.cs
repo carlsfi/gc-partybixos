@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
-
 
 public class TurnManager : MonoBehaviour
 {
@@ -16,8 +15,9 @@ public class TurnManager : MonoBehaviour
 
     // Lista de todos os minigames
     private string[] allMinigames = { "Quiz Sky", "Cata Lixo", "Leva Caixa", "Corrida Animal" };
+
     // Lista de minigames disponíveis com cenas
-    private string[] availableMinigames = { "QuizSky(MG)"};
+    private string[] availableMinigames = { "QuizSky(MG)" };
 
     private void Start()
     {
@@ -31,6 +31,10 @@ public class TurnManager : MonoBehaviour
         else
         {
             // Restaura a ordem dos turnos já definida
+            GameData.lastQuizSkyWinnersIndexes.ForEach(winnerIndex =>
+            {
+                CrownManager.IncrementCrown(winnerIndex);
+            });
             turnOrder = GameData.turnOrder.Select(index => players[index]).ToList();
             StartCoroutine(HandleTurn());
         }
@@ -142,7 +146,9 @@ public class TurnManager : MonoBehaviour
         }
 
         // Seleciona um minigame disponível
-        selectedMinigame = availableMinigames[UnityEngine.Random.Range(0, availableMinigames.Length)];
+        selectedMinigame = availableMinigames[
+            UnityEngine.Random.Range(0, availableMinigames.Length)
+        ];
         messageManager.ShowMessage($"Minigame Selecionado: {selectedMinigame}");
 
         yield return new WaitForSeconds(2);
@@ -152,60 +158,57 @@ public class TurnManager : MonoBehaviour
     }
 
     private void SaveGameState()
-{
-    for (int i = 0; i < players.Count; i++)
     {
-        PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
-        GameData.playerPositions[i] = movement.currentWaypointIndex;
+        for (int i = 0; i < players.Count; i++)
+        {
+            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+            GameData.playerPositions[i] = movement.currentWaypointIndex;
 
-        // Salva o sprite do jogador
-        Player playerData = players[i].GetComponent<Player>();
-        if (GameData.playerSprites.Count <= i)
-        {
-            GameData.playerSprites.Add(playerData.playerSprite);
+            // Salva o sprite do jogador
+            Player playerData = players[i].GetComponent<Player>();
+            if (GameData.playerSprites.Count <= i)
+            {
+                GameData.playerSprites.Add(playerData.playerSprite);
+            }
+            else
+            {
+                GameData.playerSprites[i] = playerData.playerSprite;
+            }
         }
-        else
-        {
-            GameData.playerSprites[i] = playerData.playerSprite;
-        }
+
+        GameData.isHUDVisible = true;
     }
-
-    GameData.isHUDVisible = true;
-}
-
-
 
     private void RestoreGameState()
-{
-    for (int i = 0; i < players.Count; i++)
     {
-        PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
-        movement.currentWaypointIndex = GameData.playerPositions[i];
-        movement.transform.position = movement.waypoints[movement.currentWaypointIndex].position;
-
-        // Restaura o sprite do jogador
-        Player playerData = players[i].GetComponent<Player>();
-        if (i < GameData.playerSprites.Count)
+        for (int i = 0; i < players.Count; i++)
         {
-            playerData.playerSprite = GameData.playerSprites[i];
+            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+            movement.currentWaypointIndex = GameData.playerPositions[i];
+            movement.transform.position = movement
+                .waypoints[movement.currentWaypointIndex]
+                .position;
+
+            // Restaura o sprite do jogador
+            Player playerData = players[i].GetComponent<Player>();
+            if (i < GameData.playerSprites.Count)
+            {
+                playerData.playerSprite = GameData.playerSprites[i];
+            }
+        }
+
+        // Atualiza as pontuações no HUD
+        var hudManager = FindObjectOfType<HUDManager>();
+        for (int i = 0; i < GameData.playerScores.Count; i++)
+        {
+            string playerName = players[i].name;
+            int playerScore = GameData.playerScores[i];
+            hudManager.UpdateScore(playerName, playerScore); // Atualiza o ScoreText do HUD
+        }
+
+        if (GameData.isHUDVisible && turnOrder.Count > 0)
+        {
+            hudManager.UpdateHUD(turnOrder);
         }
     }
-
-    // Atualiza as pontuações no HUD
-    var hudManager = FindObjectOfType<HUDManager>();
-    for (int i = 0; i < GameData.playerScores.Count; i++)
-    {
-        string playerName = players[i].name;
-        int playerScore = GameData.playerScores[i];
-        hudManager.UpdateScore(playerName, playerScore); // Atualiza o ScoreText do HUD
-    }
-
-    if (GameData.isHUDVisible && turnOrder.Count > 0)
-    {
-        hudManager.UpdateHUD(turnOrder);
-    }
-}
-
-
-    
 }

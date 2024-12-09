@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
@@ -32,7 +32,6 @@ public class HUDManager : MonoBehaviour
         SetHUDVisibility(GameData.isHUDVisible);
     }
 
-
     private void OnDestroy()
     {
         // Remova o evento para evitar erros de referência
@@ -43,34 +42,32 @@ public class HUDManager : MonoBehaviour
     }
 
     public void UpdateHUD(List<GameObject> turnOrder)
-{
-    for (int i = 0; i < playerImages.Count; i++)
     {
-        if (i < turnOrder.Count)
+        for (int i = 0; i < playerImages.Count; i++)
         {
-            Player playerData = turnOrder[i].GetComponent<Player>();
-            
-            if (playerData.playerSprite != null)
+            if (i < turnOrder.Count)
             {
-                Debug.Log($"Setting sprite for player {playerData.name}");
-                playerImages[i].sprite = playerData.playerSprite;
-                playerImages[i].gameObject.SetActive(true);
+                Player playerData = turnOrder[i].GetComponent<Player>();
+
+                if (playerData.playerSprite != null)
+                {
+                    Debug.Log($"Setting sprite for player {playerData.name}");
+                    playerImages[i].sprite = playerData.playerSprite;
+                    playerImages[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning($"Player {playerData.name} has no sprite set!");
+                }
             }
             else
             {
-                Debug.LogWarning($"Player {playerData.name} has no sprite set!");
+                playerImages[i].gameObject.SetActive(false);
             }
         }
-        else
-        {
-            playerImages[i].gameObject.SetActive(false);
-        }
+
+        SetHUDVisibility(true);
     }
-
-    SetHUDVisibility(true);
-}
-
-
 
     private void SetHUDVisibility(bool isVisible)
     {
@@ -130,38 +127,36 @@ public class HUDManager : MonoBehaviour
     }
 
     public int GetPlayerScore(string playerName)
-{
-    if (playerScores.ContainsKey(playerName))
     {
-        return playerScores[playerName];
-    }
-    return 0;
-}
-
-public List<string> GetPlayerNames()
-{
-    List<string> playerNames = new List<string>();
-
-    // Adiciona nomes dos jogadores da esquerda
-    foreach (var playerHUD in leftPlayers)
-    {
-        if (playerHUD.profileImage != null)
+        if (playerScores.ContainsKey(playerName))
         {
-            playerNames.Add(playerHUD.profileImage.name);
+            return playerScores[playerName];
         }
+        return 0;
     }
 
-    // Adiciona nomes dos jogadores da direita
-    foreach (var playerHUD in rightPlayers)
+    public List<string> GetPlayerNames()
     {
-        if (playerHUD.profileImage != null)
+        List<string> playerNames = new List<string>();
+
+        // Adiciona nomes dos jogadores da esquerda
+        foreach (var playerHUD in leftPlayers)
         {
-            playerNames.Add(playerHUD.profileImage.name);
+            if (playerHUD.profileImage != null)
+            {
+                playerNames.Add(playerHUD.profileImage.name);
+            }
         }
+
+        // Adiciona nomes dos jogadores da direita
+        foreach (var playerHUD in rightPlayers)
+        {
+            if (playerHUD.profileImage != null)
+            {
+                playerNames.Add(playerHUD.profileImage.name);
+            }
+        }
+
+        return playerNames;
     }
-
-    return playerNames;
-}
-
-
 }

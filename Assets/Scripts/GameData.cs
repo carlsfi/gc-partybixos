@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+
 public static class GameData
 {
     public static List<int> playerPositions = new List<int>(); // Índices dos jogadores no tabuleiro
@@ -10,9 +11,7 @@ public static class GameData
     public static bool isHUDVisible = false; // Indica se o HUD deve estar visível
     public static List<Sprite> playerSprites = new List<Sprite>(); // Sprites dos jogadores
     public static int lastMinigameWinner = -1; // Índice do vencedor do último minigame
-
-
-
+    public static List<int> lastQuizSkyWinnersIndexes = new();
 
     // Método para inicializar os dados do jogo
     public static void InitializeGameData(int playerCount)
