@@ -10,6 +10,8 @@ public class HotPotatoGameManager : MonoBehaviour
     public float timeReductionPerRound = 5f; // Redução do tempo por round
     public float proximityRadius = 2f; // Raio para detectar jogadores próximos
 
+    public MessagePotato messagePotato; // Referência ao MessagePotato
+
     private GameObject currentHotPlayer; // Jogador com a batata quente
     private float roundTimer;
     private int currentRound = 1;
@@ -57,6 +59,7 @@ public class HotPotatoGameManager : MonoBehaviour
             playerScores[player] = 0; // Inicializa os pontos dos jogadores
         }
 
+        ShowRoundMessage(); // Mostra mensagem do primeiro round
         ChooseRandomHotPlayer();
     }
 
@@ -91,6 +94,7 @@ public class HotPotatoGameManager : MonoBehaviour
         {
             // Reduz o tempo por round, mas nunca abaixo de 10 segundos
             roundTimer = Mathf.Max(10f, initialRoundTime - (timeReductionPerRound * (currentRound - 1)));
+            ShowRoundMessage(); // Mostra mensagem do próximo round
             ChooseRandomHotPlayer();
         }
     }
@@ -194,5 +198,13 @@ public class HotPotatoGameManager : MonoBehaviour
     {
         hotpotatoController controller = player.GetComponent<hotpotatoController>();
         return controller != null ? controller.playerNumber : 0;
+    }
+
+    private void ShowRoundMessage()
+    {
+        if (messagePotato != null)
+        {
+            messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
+        }
     }
 }
