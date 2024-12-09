@@ -9,6 +9,7 @@ public class HotPotatoGameManager : MonoBehaviour
     public float initialRoundTime = 30f; // Duração do primeiro round em segundos
     public float timeReductionPerRound = 5f; // Redução do tempo por round
     public float proximityRadius = 2f; // Raio para detectar jogadores próximos
+    public float defeatDuration = 3f; // Duração do estado de derrota
 
     public MessagePotato messagePotato; // Referência ao MessagePotato
 
@@ -17,6 +18,7 @@ public class HotPotatoGameManager : MonoBehaviour
     private int currentRound = 1;
 
     private Dictionary<GameObject, int> playerScores = new Dictionary<GameObject, int>(); // Pontos de cada jogador
+    private Dictionary<GameObject, bool> isPlayerActive = new Dictionary<GameObject, bool>(); // Status de atividade dos jogadores
 
     private void Start()
     {
@@ -36,10 +38,9 @@ public class HotPotatoGameManager : MonoBehaviour
             }
         }
 
-        // Verifica entrada para ataque
         foreach (var player in players)
         {
-            if (Input.GetButtonDown($"P{GetPlayerNumber(player)}_X"))
+            if (isPlayerActive[player] && Input.GetButtonDown($"P{GetPlayerNumber(player)}_X"))
             {
                 PlayAttackAnimation(player); // Sempre executa a animação de ataque
                 if (player == currentHotPlayer)
@@ -57,6 +58,7 @@ public class HotPotatoGameManager : MonoBehaviour
         foreach (var player in players)
         {
             playerScores[player] = 0; // Inicializa os pontos dos jogadores
+            isPlayerActive[player] = true; // Marca todos os jogadores como ativos
         }
 
         ShowRoundMessage(); // Mostra mensagem do primeiro round
@@ -79,6 +81,7 @@ public class HotPotatoGameManager : MonoBehaviour
     {
         Debug.Log($"Fim do Round {currentRound}");
         playerScores[currentHotPlayer]--; // Penaliza o jogador que ficou com a batata no final do tempo
+        StartCoroutine(HandleDefeat(currentHotPlayer)); // Aplica animação de derrota no perdedor
         NextRound();
     }
 
@@ -157,7 +160,7 @@ public class HotPotatoGameManager : MonoBehaviour
     {
         RemoveOutline(currentHotPlayer); // Remove o outline do jogador atual
         currentHotPlayer = newHotPlayer;
-        ApplyOutline(currentHotPlayer); // Adiciona outline ao novo jogador
+        ApplyOutline(newHotPlayer); // Adiciona outline ao novo jogador
         Debug.Log($"{currentHotPlayer.name} recebeu a batata quente!");
     }
 
@@ -175,7 +178,7 @@ public class HotPotatoGameManager : MonoBehaviour
         foreach (var collider in nearbyPlayers)
         {
             GameObject nearbyPlayer = collider.gameObject;
-            if (nearbyPlayer != currentHotPlayer) // Certifica-se de que não está tentando passar para si mesmo
+            if (nearbyPlayer != currentHotPlayer && isPlayerActive[nearbyPlayer]) // Certifica-se de que não está tentando passar para si mesmo
             {
                 PassHotPotato(nearbyPlayer); // Passa a batata quente
                 AddScore(currentHotPlayer, 1); // Dá um ponto para quem passou
@@ -186,7 +189,6 @@ public class HotPotatoGameManager : MonoBehaviour
 
     private void PlayAttackAnimation(GameObject player)
     {
-        // Aciona a animação de ataque para o jogador especificado
         Animator animator = player.GetComponent<Animator>();
         if (animator != null)
         {
@@ -206,5 +208,30 @@ public class HotPotatoGameManager : MonoBehaviour
         {
             messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
         }
+    }
+
+    private IEnumerator HandleDefeat(GameObject player)
+    {
+        isPlayerActive[player] = false; // Torna o jogador inativo
+        Animator animator = player.GetComponent<Animator>();
+        hotpotatoController controller = player.GetComponent<hotpotatoController>();
+        if (controller != null)
+        {
+            controller.DisableMovement(); // Desativa o movimento
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Defeat"); // Aciona a animação de derrota
+        }
+
+        yield return new WaitForSeconds(defeatDuration); // Aguarda a duração da derrota
+
+        if (controller != null)
+        {
+            controller.EnableMovement(); // Reativa o movimento
+        }
+
+        isPlayerActive[player] = true; // Torna o jogador ativo novamente
     }
 }

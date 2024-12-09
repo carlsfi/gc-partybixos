@@ -22,6 +22,8 @@ public class hotpotatoController : MonoBehaviour
     private string jumpButton;
     private string actionButton;
 
+    private bool canMove = true; // Controle de movimento
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -44,7 +46,10 @@ public class hotpotatoController : MonoBehaviour
     private void Update()
     {
         CheckGrounded();
-        HandleMovement();
+        if (canMove)
+        {
+            HandleMovement();
+        }
         UpdateAnimations();
     }
 
@@ -117,4 +122,13 @@ public class hotpotatoController : MonoBehaviour
         }
     }
 
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
 }
