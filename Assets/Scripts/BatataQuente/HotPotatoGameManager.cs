@@ -55,16 +55,23 @@ public class HotPotatoGameManager : MonoBehaviour
     {
         roundTimer = initialRoundTime;
 
+        // Inicializa os pontos e status dos jogadores
         foreach (var player in players)
         {
-            playerScores[player] = 0; // Inicializa os pontos dos jogadores
+            playerScores[player] = totalRounds; // Todos começam com a pontuação equivalente ao total de rounds
             isPlayerActive[player] = true; // Marca todos os jogadores como ativos
         }
 
+        // Sincroniza com o GameData
+        if (GameData.playerScores == null || GameData.playerScores.Count != players.Count)
+        {
+            GameData.playerScores = new List<int>(new int[players.Count]); // Inicializa com 0 para cada jogador
+        }
+
+        SyncGameDataScores(); // Sincroniza após inicializar
         ChooseRandomHotPlayer(); // Escolhe o jogador inicial
         StartCoroutine(DisplayRoundMessage()); // Mostra a mensagem do Round 1 com o jogador inicial
     }
-
 
     private void ChooseRandomHotPlayer()
     {
@@ -81,7 +88,26 @@ public class HotPotatoGameManager : MonoBehaviour
     private void EndRound()
     {
         Debug.Log($"Fim do Round {currentRound}");
-        playerScores[currentHotPlayer]--; // Penaliza o jogador que ficou com a batata no final do tempo
+
+        // Penaliza o jogador que ficou com a batata quente
+        if (playerScores.ContainsKey(currentHotPlayer))
+        {
+            playerScores[currentHotPlayer]--;
+            Debug.Log($"Jogador {currentHotPlayer.name} perdeu 1 ponto! Nova pontuação: {playerScores[currentHotPlayer]}");
+        }
+        else
+        {
+            Debug.LogError($"Jogador {currentHotPlayer.name} não encontrado em playerScores!");
+        }
+
+        SyncGameDataScores(); // Sincroniza a pontuação
+
+        Debug.Log("Pontuação atualizada no fim da rodada:");
+        foreach (var player in players)
+        {
+            Debug.Log($"{player.name}: {playerScores[player]} pontos");
+        }
+
         StartCoroutine(HandleDefeat(currentHotPlayer)); // Aplica animação de derrota no perdedor
         NextRound();
     }
@@ -92,22 +118,25 @@ public class HotPotatoGameManager : MonoBehaviour
 
         if (currentRound > totalRounds)
         {
-            EndGame();
+            EndGame(); // Finaliza o minigame se o número de rounds for excedido
         }
         else
         {
             // Reduz o tempo por round, mas nunca abaixo de 10 segundos
             roundTimer = Mathf.Max(10f, initialRoundTime - (timeReductionPerRound * (currentRound - 1)));
             ShowRoundMessage(); // Mostra mensagem do próximo round
-            ChooseRandomHotPlayer();
+            ChooseRandomHotPlayer(); // Escolhe o próximo jogador com a batata
         }
     }
 
     private void EndGame()
     {
         Debug.Log("Fim do Minigame! Calculando os resultados...");
+        SyncGameDataScores(); // Garante que a pontuação esteja sincronizada antes do cálculo
+
         GameObject winner = null;
         int maxScore = int.MinValue;
+        List<GameObject> tiedPlayers = new List<GameObject>();
 
         foreach (var player in players)
         {
@@ -115,12 +144,101 @@ public class HotPotatoGameManager : MonoBehaviour
             if (playerScores[player] > maxScore)
             {
                 maxScore = playerScores[player];
-                winner = player;
+                tiedPlayers.Clear();
+                tiedPlayers.Add(player);
+            }
+            else if (playerScores[player] == maxScore)
+            {
+                tiedPlayers.Add(player);
             }
         }
 
-        Debug.Log($"O vencedor foi {winner.name} com {maxScore} pontos!");
-        // Aqui você pode adicionar a lógica para transitar de volta ao tabuleiro ou outro minigame
+        if (tiedPlayers.Count == 1)
+        {
+            winner = tiedPlayers[0];
+            Debug.Log($"O vencedor foi {winner.name} com {maxScore} pontos!");
+            StartCoroutine(ShowWinnerAndReturnToBoard(winner, null));
+        }
+        else
+        {
+            Debug.Log("Houve um empate!");
+            StartCoroutine(ShowWinnerAndReturnToBoard(null, tiedPlayers));
+        }
+    }
+
+    private IEnumerator ShowWinnerAndReturnToBoard(GameObject winner, List<GameObject> tiedPlayers)
+    {
+        if (messagePotato != null)
+        {
+            if (winner != null)
+            {
+                messagePotato.ShowMessage($"O vencedor foi: {winner.name}!");
+                UpdateGameDataWinner(winner);
+            }
+            else if (tiedPlayers != null && tiedPlayers.Count > 0)
+            {
+                string tiedNames = string.Join(", ", tiedPlayers.ConvertAll(p => p.name));
+                messagePotato.ShowMessage($"Empate entre: {tiedNames}!");
+                UpdateGameDataTie(tiedPlayers);
+            }
+        }
+
+        yield return new WaitForSeconds(5f); // Aguarda 5 segundos antes de voltar ao tabuleiro
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tabuleiro");
+    }
+
+    private void SyncGameDataScores()
+    {
+        if (GameData.playerScores != null && GameData.playerScores.Count == players.Count)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                GameData.playerScores[i] = playerScores[players[i]];
+                Debug.Log($"Sincronizando pontuação: {players[i].name} -> {GameData.playerScores[i]}");
+            }
+        }
+        else
+        {
+            Debug.LogError("GameData.playerScores está fora de sincronia com a lista de jogadores!");
+        }
+    }
+
+    private void UpdateGameDataWinner(GameObject winner)
+    {
+        int index = players.IndexOf(winner);
+        if (index >= 0 && index < GameData.playerScores.Count)
+        {
+            GameData.playerScores[index]++;
+        }
+    }
+
+    private void UpdateGameDataTie(List<GameObject> tiedPlayers)
+    {
+        foreach (var player in tiedPlayers)
+        {
+            int index = players.IndexOf(player);
+            if (index >= 0 && index < GameData.playerScores.Count)
+            {
+                GameData.playerScores[index]++;
+            }
+        }
+    }
+
+    private IEnumerator DisplayRoundMessage()
+    {
+        if (messagePotato != null)
+        {
+            // Mostra o início do Round 1
+            messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
+            yield return new WaitForSeconds(1f); // Aguarda a exibição da primeira mensagem
+
+            // Mostra o jogador inicial
+            if (currentHotPlayer != null)
+            {
+                messagePotato.ShowMessage($"Jogador inicial: {currentHotPlayer.name}");
+            }
+        }
     }
 
     private void ApplyOutline(GameObject player)
@@ -157,35 +275,10 @@ public class HotPotatoGameManager : MonoBehaviour
         }
     }
 
-    public void PassHotPotato(GameObject newHotPlayer)
+    private int GetPlayerNumber(GameObject player)
     {
-        RemoveOutline(currentHotPlayer); // Remove o outline do jogador atual
-        currentHotPlayer = newHotPlayer;
-        ApplyOutline(newHotPlayer); // Adiciona outline ao novo jogador
-        Debug.Log($"{currentHotPlayer.name} recebeu a batata quente!");
-    }
-
-    public void AddScore(GameObject player, int score)
-    {
-        if (playerScores.ContainsKey(player))
-        {
-            playerScores[player] += score;
-        }
-    }
-
-    private void TryPassHotPotato()
-    {
-        Collider[] nearbyPlayers = Physics.OverlapSphere(currentHotPlayer.transform.position, proximityRadius, LayerMask.GetMask("Player"));
-        foreach (var collider in nearbyPlayers)
-        {
-            GameObject nearbyPlayer = collider.gameObject;
-            if (nearbyPlayer != currentHotPlayer && isPlayerActive[nearbyPlayer]) // Certifica-se de que não está tentando passar para si mesmo
-            {
-                PassHotPotato(nearbyPlayer); // Passa a batata quente
-                AddScore(currentHotPlayer, 1); // Dá um ponto para quem passou
-                break;
-            }
-        }
+        hotpotatoController controller = player.GetComponent<hotpotatoController>();
+        return controller != null ? controller.playerNumber : 0;
     }
 
     private void PlayAttackAnimation(GameObject player)
@@ -197,58 +290,59 @@ public class HotPotatoGameManager : MonoBehaviour
         }
     }
 
-    private int GetPlayerNumber(GameObject player)
+    private void TryPassHotPotato()
     {
-        hotpotatoController controller = player.GetComponent<hotpotatoController>();
-        return controller != null ? controller.playerNumber : 0;
+        Collider[] nearbyPlayers = Physics.OverlapSphere(currentHotPlayer.transform.position, proximityRadius, LayerMask.GetMask("Player"));
+        foreach (var collider in nearbyPlayers)
+        {
+            GameObject nearbyPlayer = collider.gameObject;
+            if (nearbyPlayer != currentHotPlayer && isPlayerActive[nearbyPlayer])
+            {
+                PassHotPotato(nearbyPlayer);
+                break;
+            }
+        }
     }
 
-    private void ShowRoundMessage()
+    private void PassHotPotato(GameObject newHotPlayer)
     {
-        if (messagePotato != null)
-        {
-            messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
-        }
+        RemoveOutline(currentHotPlayer);
+        currentHotPlayer = newHotPlayer;
+        ApplyOutline(newHotPlayer);
+        Debug.Log($"{currentHotPlayer.name} recebeu a batata quente!");
     }
 
     private IEnumerator HandleDefeat(GameObject player)
     {
-        isPlayerActive[player] = false; // Torna o jogador inativo
+        isPlayerActive[player] = false;
         Animator animator = player.GetComponent<Animator>();
         hotpotatoController controller = player.GetComponent<hotpotatoController>();
         if (controller != null)
         {
-            controller.DisableMovement(); // Desativa o movimento
+            controller.DisableMovement();
         }
 
         if (animator != null)
         {
-            animator.SetTrigger("Defeat"); // Aciona a animação de derrota
+            animator.SetTrigger("Defeat");
         }
 
-        yield return new WaitForSeconds(defeatDuration); // Aguarda a duração da derrota
+        yield return new WaitForSeconds(defeatDuration);
 
         if (controller != null)
         {
-            controller.EnableMovement(); // Reativa o movimento
+            controller.EnableMovement();
         }
 
-        isPlayerActive[player] = true; // Torna o jogador ativo novamente
+        isPlayerActive[player] = true;
     }
-    private IEnumerator DisplayRoundMessage()
+
+    private void ShowRoundMessage()
+{
+    if (messagePotato != null)
     {
-        if (messagePotato != null)
-        {
-            // Mostra o início do Round 1
-            messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
-            yield return new WaitForSeconds(1f); // Aguarda a exibição da primeira mensagem
-
-            // Mostra o jogador inicial
-            if (currentHotPlayer != null)
-            {
-                messagePotato.ShowMessage($"Jogador inicial: {currentHotPlayer.name}");
-            }
-        }
+        messagePotato.ShowMessage($"Round {currentRound} Iniciando!");
     }
+}
 
 }

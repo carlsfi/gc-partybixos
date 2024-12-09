@@ -3363,7 +3363,7 @@ GameObject:
   - component: {fileID: 432163869}
   - component: {fileID: 432163868}
   m_Layer: 3
-  m_Name: character_bearArmRight
+  m_Name: character_polarArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3782,7 +3782,7 @@ GameObject:
   - component: {fileID: 518109242}
   - component: {fileID: 518109241}
   m_Layer: 3
-  m_Name: character_bearHead
+  m_Name: character_polarHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6742,8 +6742,8 @@ MonoBehaviour:
   - {fileID: 1264936341}
   - {fileID: 84599389}
   - {fileID: 2134182207}
-  totalRounds: 10
-  initialRoundTime: 25
+  totalRounds: 5
+  initialRoundTime: 5
   timeReductionPerRound: 5
   proximityRadius: 1
   defeatDuration: 1
@@ -7720,7 +7720,7 @@ GameObject:
   - component: {fileID: 1175414461}
   - component: {fileID: 1175414460}
   m_Layer: 3
-  m_Name: character_bearArmLeft
+  m_Name: character_polarArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11738,7 +11738,7 @@ GameObject:
   - component: {fileID: 1823940552}
   - component: {fileID: 1823940551}
   m_Layer: 3
-  m_Name: character_panda
+  m_Name: character_polar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
