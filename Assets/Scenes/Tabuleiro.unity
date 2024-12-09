@@ -9172,6 +9172,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5972760895841569726, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1285822265}
+    - targetCorrespondingSourceObject: {fileID: 2968256837935764418, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214007943}
   m_SourcePrefab: {fileID: 100100000, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
 --- !u!1001 &222052763
 PrefabInstance:
@@ -13108,6 +13111,17 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &349288861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 596943987653954624, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
+  m_PrefabInstance: {fileID: 220498705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &351848060
 GameObject:
   m_ObjectHideFlags: 0
@@ -46606,6 +46620,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05cee6315ff403c47b560042975f1dc7, type: 3}
   m_PrefabInstance: {fileID: 1211632440}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1214007941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2968256837935764418, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
+  m_PrefabInstance: {fileID: 220498705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1214007943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214007941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4928a94444fda4782ba7f220839bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crownOne: {fileID: 2070810147}
+  crownTwo: {fileID: 1740029706}
+  crownThree: {fileID: 349288861}
+  crownFour: {fileID: 1899325148}
 --- !u!1001 &1214586324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64342,6 +64377,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05cee6315ff403c47b560042975f1dc7, type: 3}
   m_PrefabInstance: {fileID: 1739495848}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1740029706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4497666571499110675, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
+  m_PrefabInstance: {fileID: 220498705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1740845797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70620,6 +70666,17 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &1899325148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 818406232220109639, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
+  m_PrefabInstance: {fileID: 220498705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1902311132
 GameObject:
   m_ObjectHideFlags: 0
@@ -75720,6 +75777,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05cee6315ff403c47b560042975f1dc7, type: 3}
   m_PrefabInstance: {fileID: 2064128526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2070810147 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8555601289610286318, guid: 0fcaaf735727b244b98f1033bdf561c4, type: 3}
+  m_PrefabInstance: {fileID: 220498705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2075276372
 GameObject:
   m_ObjectHideFlags: 0
