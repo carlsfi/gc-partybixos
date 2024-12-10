@@ -167,27 +167,53 @@ public class HotPotatoGameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowWinnerAndReturnToBoard(GameObject winner, List<GameObject> tiedPlayers)
+private IEnumerator ShowWinnerAndReturnToBoard(GameObject winner, List<GameObject> tiedPlayers)
+{
+    if (messagePotato != null)
     {
-        if (messagePotato != null)
+        if (winner != null)
         {
-            if (winner != null)
+            // Exibe a mensagem para o vencedor
+            messagePotato.ShowMessage($"O vencedor foi: {winner.name}!");
+
+            // Armazena o vencedor no GameData
+            int winnerIndex = players.IndexOf(winner);
+            if (winnerIndex >= 0)
             {
-                messagePotato.ShowMessage($"O vencedor foi: {winner.name}!");
-                UpdateGameDataWinner(winner);
-            }
-            else if (tiedPlayers != null && tiedPlayers.Count > 0)
-            {
-                string tiedNames = string.Join(", ", tiedPlayers.ConvertAll(p => p.name));
-                messagePotato.ShowMessage($"Empate entre: {tiedNames}!");
-                UpdateGameDataTie(tiedPlayers);
+                if (GameData.miniGameWinners == null)
+                {
+                    GameData.miniGameWinners = new List<int>();
+                }
+                GameData.miniGameWinners.Add(winnerIndex);
             }
         }
+        else if (tiedPlayers != null && tiedPlayers.Count > 0)
+        {
+            // Exibe a mensagem para os jogadores que empataram
+            string tiedNames = string.Join(", ", tiedPlayers.ConvertAll(p => p.name));
+            messagePotato.ShowMessage($"Empate entre: {tiedNames}!");
 
-        yield return new WaitForSeconds(5f); // Aguarda 5 segundos antes de voltar ao tabuleiro
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Tabuleiro");
+            // Armazena todos os empatados no GameData
+            foreach (var tiedPlayer in tiedPlayers)
+            {
+                int tiedIndex = players.IndexOf(tiedPlayer);
+                if (tiedIndex >= 0)
+                {
+                    if (GameData.miniGameWinners == null)
+                    {
+                        GameData.miniGameWinners = new List<int>();
+                    }
+                    GameData.miniGameWinners.Add(tiedIndex);
+                }
+            }
+        }
     }
+
+    yield return new WaitForSeconds(5f); // Aguarda 5 segundos antes de voltar ao tabuleiro
+
+    UnityEngine.SceneManagement.SceneManager.LoadScene("Tabuleiro");
+}
+
 
     private void SyncGameDataScores()
     {

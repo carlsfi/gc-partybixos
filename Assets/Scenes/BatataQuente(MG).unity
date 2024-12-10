@@ -5343,8 +5343,8 @@ MonoBehaviour:
   - {fileID: 1264936341}
   - {fileID: 84599389}
   - {fileID: 2134182207}
-  totalRounds: 5
-  initialRoundTime: 25
+  totalRounds: 3
+  initialRoundTime: 3
   timeReductionPerRound: 5
   proximityRadius: 1
   defeatDuration: 1
