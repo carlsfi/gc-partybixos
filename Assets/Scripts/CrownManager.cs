@@ -95,7 +95,7 @@ public class CrownManager : MonoBehaviour
 
     private static void CheckForWinner(int playerIndex)
     {
-        if (crownsList[playerIndex] >= 2)
+        if (crownsList[playerIndex] >= 5)
         {
             Debug.Log($"Jogador {playerIndex + 1} venceu o jogo com 5 coroas!");
 
