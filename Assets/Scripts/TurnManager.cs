@@ -16,7 +16,7 @@ public class TurnManager : MonoBehaviour
     // Lista de todos os minigames
     private string[] allMinigames = { "Quiz Sky", "Cata Lixo", "Leva Caixa", "Corrida Animal", "Batata Quente" };
     // Lista de minigames disponíveis com cenas
-    private string[] availableMinigames = {"QuizSky(MG)"};
+    private string[] availableMinigames = {"QuizSky(MG)", "BatataQuente(MG)"};
 
     private void Start()
     {
