@@ -182,6 +182,62 @@ public class Questions : MonoBehaviour
                 items: new List<string> { "Manto", "Crosta Terrestre", "Núcleo Externo", "Núcleo Interno" },
                 answer: 1,
                 difficulty: Difficulty.Expert
+            ),
+            new(
+                id: 21,
+                text: "Qual é o nome do personagem principal do filme O Rei Leão?",
+                items: new List<string> { "Simba", "Timão", "Scar", "Pumba" },
+                answer: 0,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 22,
+                text: "Em qual continente está localizado o Egito",
+                items: new List<string> { "América", "Ásia", "Europa", "África" },
+                answer: 3,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 23,
+                text: "Qual é o resultado de 7 × 3?",
+                items: new List<string> { "21", "24", "18", "27" },
+                answer: 0,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 24,
+                text: "Quantos dias há em um ano bissexto?",
+                items: new List<string> { "365", "364", "366", "367" },
+                answer: 2,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 25,
+                text: "Qual é o nome da estação menos quente do ano?",
+                items: new List<string> { "Outono", "Primavera", "Inverno", "Verão" },
+                answer: 2,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 26,
+                text: "Qual desses animais é um anfíbio?",
+                items: new List<string> { "Cobra", "Sapo", "Águia", "Cavalo" },
+                answer: 1,
+                difficulty: Difficulty.Easy
+            ),
+            new(
+                id: 27,
+                text: "Qual é o número romano para 10?",
+                items: new List<string> { "V", "X", "L", "C" },
+                answer: 1,
+                difficulty: Difficulty.Medium
+            ),
+            new(
+                id: 28,
+                text: "Qual é o nome da montanha mais alta do mundo?",
+                items: new List<string> { "K2", "Everest", "Kilimanjaro", "Aconcágua" },
+                answer: 1,
+                difficulty: Difficulty.Medium
             )
             }
         );

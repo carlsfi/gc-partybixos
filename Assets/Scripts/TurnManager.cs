@@ -16,7 +16,7 @@ public class TurnManager : MonoBehaviour
     // Lista de todos os minigames
     private string[] allMinigames = { "Quiz Sky", "Cata Lixo", "Leva Caixa", "Corrida Animal", "Batata Quente" };
     // Lista de minigames disponíveis com cenas
-    private string[] availableMinigames = {"BatataQuente(MG)"};
+    private string[] availableMinigames = {"QuizSky(MG)", "BatataQuente(MG)"};
 
     private void Start()
     {
@@ -178,36 +178,54 @@ public class TurnManager : MonoBehaviour
         GameData.isHUDVisible = true;
     }
 
-    private void RestoreGameState()
+private void RestoreGameState()
+{
+    for (int i = 0; i < players.Count; i++)
     {
-        for (int i = 0; i < players.Count; i++)
-        {
-            PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
-            movement.currentWaypointIndex = GameData.playerPositions[i];
-            movement.transform.position = movement
-                .waypoints[movement.currentWaypointIndex]
-                .position;
+        PlayerMovement movement = players[i].GetComponent<PlayerMovement>();
+        movement.currentWaypointIndex = GameData.playerPositions[i];
+        movement.transform.position = movement
+            .waypoints[movement.currentWaypointIndex]
+            .position;
 
-            // Restaura o sprite do jogador
-            Player playerData = players[i].GetComponent<Player>();
-            if (i < GameData.playerSprites.Count)
-            {
-                playerData.playerSprite = GameData.playerSprites[i];
-            }
-        }
-
-        // Atualiza as pontuações no HUD
-        var hudManager = FindObjectOfType<HUDManager>();
-        for (int i = 0; i < GameData.playerScores.Count; i++)
+        // Restaura o sprite do jogador
+        Player playerData = players[i].GetComponent<Player>();
+        if (i < GameData.playerSprites.Count)
         {
-            string playerName = players[i].name;
-            int playerScore = GameData.playerScores[i];
-            hudManager.UpdateScore(playerName, playerScore); // Atualiza o ScoreText do HUD
-        }
-
-        if (GameData.isHUDVisible && turnOrder.Count > 0)
-        {
-            hudManager.UpdateHUD(turnOrder);
+            playerData.playerSprite = GameData.playerSprites[i];
         }
     }
+
+    // Atualiza as pontuações no HUD
+    var hudManager = FindObjectOfType<HUDManager>();
+    for (int i = 0; i < GameData.playerScores.Count; i++)
+    {
+        string playerName = players[i].name;
+        int playerScore = GameData.playerScores[i];
+        hudManager.UpdateScore(playerName, playerScore); // Atualiza o ScoreText do HUD
+    }
+
+    // Verifica os vencedores do último minigame e adiciona pontos
+    if (GameData.miniGameWinners != null && GameData.miniGameWinners.Count > 0)
+    {
+        foreach (int winnerIndex in GameData.miniGameWinners)
+        {
+            // Incrementa a pontuação do vencedor
+            GameData.playerScores[winnerIndex]++;
+            hudManager.UpdateScore(players[winnerIndex].name, GameData.playerScores[winnerIndex]); // Atualiza no HUD
+            
+            // Incrementa a coroa do vencedor
+            CrownManager.IncrementCrown(winnerIndex);
+        }
+
+        // Reseta a lista de vencedores após contabilizar os pontos
+        GameData.miniGameWinners.Clear();
+    }
+
+    if (GameData.isHUDVisible && turnOrder.Count > 0)
+    {
+        hudManager.UpdateHUD(turnOrder);
+    }
+}
+
 }

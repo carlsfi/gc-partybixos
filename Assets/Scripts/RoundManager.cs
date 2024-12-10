@@ -29,7 +29,7 @@ public class RoundManager : MonoBehaviour
     private HUDManager hudManager; // Referência do HUDManager no Inspector
 
     [SerializeField]
-    private const int winningScore = 4; // Pontuação para vencer o minigame
+    private const int winningScore = 2; // Pontuação para vencer o minigame
 
     [SerializeField]
     private const string boardSceneName = "Tabuleiro"; // Nome da cena do tabuleiro
@@ -270,6 +270,17 @@ public class RoundManager : MonoBehaviour
 
     void CheckForWinner()
     {
+
+            // Obtém a lista de nomes dos jogadores do HUDManager
+        var playerNames = hudManager.GetPlayerNames();
+
+        // Loga a lista de nomes para depuração
+        Debug.Log("Ordem dos jogadores obtida do HUDManager:");
+        foreach (var name in playerNames)
+        {
+            Debug.Log($"Jogador: {name}");
+        }
+        
         List<int> winners = new List<int>(); // Lista para armazenar os índices dos vencedores
 
         foreach (var playerName in hudManager.GetPlayerNames())
