@@ -23,9 +23,12 @@ public class CrownManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI crownFour;
 
+    [SerializeField]
+    private TMP_Text winnerText; // Campo para exibir o vencedor (configurar no Inspector)
+
     void Awake()
     {
-        // Inicializa os campos est�ticos com os objetos configurados no Inspector
+        // Inicializa os campos estáticos com os objetos configurados no Inspector
         crownValuePlayerOne = crownOne;
         crownValuePlayerTwo = crownTwo;
         crownValuePlayerThree = crownThree;
@@ -48,6 +51,9 @@ public class CrownManager : MonoBehaviour
 
         // Atualiza o texto correspondente
         UpdateCrownDisplay(playerIndex);
+
+        // Verifica se o jogador atingiu o limite de coroas
+        CheckForWinner(playerIndex);
     }
 
     private static void UpdateCrownDisplay(int playerIndex)
@@ -76,7 +82,7 @@ public class CrownManager : MonoBehaviour
 
     private static TextMeshProUGUI GetCrownByIndex(int index)
     {
-        // Retorna o TextMeshProUGUI correspondente ao �ndice
+        // Retorna o TextMeshProUGUI correspondente ao índice
         return index switch
         {
             0 => crownValuePlayerOne,
@@ -85,5 +91,29 @@ public class CrownManager : MonoBehaviour
             3 => crownValuePlayerFour,
             _ => null
         };
+    }
+
+    private static void CheckForWinner(int playerIndex)
+    {
+        if (crownsList[playerIndex] >= 2)
+        {
+            Debug.Log($"Jogador {playerIndex + 1} venceu o jogo com 5 coroas!");
+
+            // Exibe o vencedor (opcional, configurar `winnerText` no Inspector)
+            CrownManager instance = FindObjectOfType<CrownManager>();
+            if (instance != null && instance.winnerText != null)
+            {
+                instance.winnerText.text = $"Jogador {playerIndex + 1} venceu o jogo!";
+            }
+
+            // Finaliza o jogo e carrega a cena de fim
+            EndGame();
+        }
+    }
+
+    private static void EndGame()
+    {
+        Debug.Log("Finalizando o jogo...");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuPrincipal");
     }
 }

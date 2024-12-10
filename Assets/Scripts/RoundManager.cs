@@ -29,7 +29,7 @@ public class RoundManager : MonoBehaviour
     private HUDManager hudManager; // Referência do HUDManager no Inspector
 
     [SerializeField]
-    private const int winningScore = 2; // Pontuação para vencer o minigame
+    private const int winningScore = 5; // Pontuação para vencer o minigame
 
     [SerializeField]
     private const string boardSceneName = "Tabuleiro"; // Nome da cena do tabuleiro
