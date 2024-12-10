@@ -17,7 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BatataQuente(MG).unity
     guid: 100ecfe8439e8ea4db0cf165cd4fa78c
-  - enabled: 1
-    path: Assets/Scenes/CataLixo(MG).unity
-    guid: a80a8b4dd9bacd9478f870dbe8b79b84
   m_configObjects: {}
